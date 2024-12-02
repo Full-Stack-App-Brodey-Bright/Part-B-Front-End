@@ -2,7 +2,7 @@ import Background from "../components/Background"
 
 async function signUpRequest() {
     const url = 'https://part-b-server.onrender.com/api/auth/register'
-    const ErrorDisplay = document.getElementsByClassName('ErrorDisplay')
+    const ErrorDisplay = document.getElementById('ErrorDisplay')
 
     let data = {
         username: document.getElementById('usernameInput').value,
@@ -21,7 +21,8 @@ async function signUpRequest() {
     const realResponse = await response.json()
 
     ErrorDisplay.textContent = realResponse.message
-    return(realResponse)
+    
+    console.log(realResponse)
 
 }
 
@@ -46,7 +47,7 @@ export default function SignUp() {
                         <a href="http://127.0.0.1:5173/login">Login</a>
                     </div>
                 </form>
-                <p className="ErrorDisplay"></p>
+                <p id="ErrorDisplay"></p>
             </section>
         </div>
         </>

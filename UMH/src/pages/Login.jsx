@@ -2,7 +2,7 @@ import Background from "../components/Background"
 
 async function loginRequest() {
     const url = 'https://part-b-server.onrender.com/api/auth/login'
-    const ErrorDisplay = document.getElementsByClassName('ErrorDisplay')
+    const ErrorDisplay = document.getElementById('ErrorDisplay')
 
     let data = {
         email: document.getElementById('emailInput').value,
@@ -20,8 +20,8 @@ async function loginRequest() {
     const realResponse = await response.json()
 
     ErrorDisplay.textContent = realResponse.message
-    console.log(realResponse)
 
+    console.log(realResponse)
 }
 
 export default function Login() {
@@ -43,7 +43,7 @@ export default function Login() {
                         <a href="http://127.0.0.1:5173/signup">Sign up</a>
                     </div>
                 </form>
-                <p className="ErrorDisplay"></p>
+                <p id="ErrorDisplay"></p>
             </section>
         </div>
         </>
