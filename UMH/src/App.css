@@ -1,42 +1,97 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+*{
+  margin: 0;
+  
+  padding: 0;
+  
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.ErrorDisplay {
+  font-size: large;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.AlreadyAUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.AlreadyAUser p {
+  margin-right: 1vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.SignUpForm {
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.card {
-  padding: 2em;
+.FormInput {
+  margin-bottom: 1vw;
+  width: 20vw;
+  height: 2vw;
 }
 
-.read-the-docs {
-  color: #888;
+.SignUpBox {
+  background-color: rgb(216, 216, 250);
+  display: flex;
+  justify-content: top;
+  padding-top: 5vh;
+  width: 40vw;
+  height: 60vh;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  flex-direction: column;
 }
+
+.Back {
+  position: fixed;
+  background-color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1vh;
+  align-items: top;
+  width: 100dvw;
+  height: 50vh;
+}
+
+.Icon {
+  background-color: black;
+  width: 4vw;
+  height: 4vw;
+  margin-left: 2vw;
+}
+
+.Dropdown {
+  background-color: black;
+  width: 4vw;
+  height: 4vw;
+  margin-right: 2vw;
+}
+
+.Title {
+  font-size: 4vw;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0%;
+  border: 0;
+  padding: 0%;
+}
+
+.centerer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
