@@ -1,31 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import SignUp from './pages/SignUp'
-import Login from './pages/Login'
-import Connect from './pages/Connect'
-import Auth from './pages/Auth'
+import { useState, createContext, Provider, useEffect } from "react";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Connect from "./pages/Connect";
+import Auth from "./pages/Auth";
+import Cookies from "js-cookie";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-    <BrowserRouter>
-    <Routes>
-      <Route index element={<Home/>} />
-      <Route path="/home" element={<Home/>} />
-      <Route path="/signup" element={<SignUp/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/connect" element={<Connect/>} />
-      <Route path="/auth" element={<Auth/>} />
-    </Routes>
-    </BrowserRouter>
-    </>
-  )
+    useEffect(() => {
+        console.log(Cookies.get("token"));
+    });
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/connect" element={<Connect />} />
+                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
-export default App
+export default App;

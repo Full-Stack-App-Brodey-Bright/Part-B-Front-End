@@ -1,11 +1,30 @@
 
-export default function Auth() {
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
+
+
+export default async function Auth() {
     let hash = window.location.hash
     let accessToken = hash.split('&')[0].split('=')[1]
-    console.log(accessToken)
-    return(
-        <div>
+    Cookies.set('YtToken', accessToken)
+    let response = await fetch('https://part-b-server.onrender.com/auth/youtubeauth', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${Cookies.get('token')}`
+        },
+        body: JSON.stringify({
+            accessToken: accessToken
+        })
+    })
 
-        </div>
-    )
+    const realResponse = await response.json()
+
+    Cookies.set('YTConnected', null)
+
+    if (response.status == 200) {
+        Cookies.set('YTConnected?', true)
+        location.href = '/connect'
+    }
+
 }

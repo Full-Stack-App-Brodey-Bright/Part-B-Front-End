@@ -21,8 +21,12 @@ async function signUpRequest() {
     const realResponse = await response.json()
 
     ErrorDisplay.textContent = realResponse.message
+
+    if (response.status == 201) {
+        location.href = `/connect`
+    }
     
-    console.log(realResponse)
+    console.log(response)
 
 }
 

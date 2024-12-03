@@ -1,14 +1,16 @@
+import { useContext, useState, useEffect } from "react"
 import Background from "../components/Background"
+import Cookies from 'js-cookie'
 
 async function loginRequest() {
     const url = 'https://part-b-server.onrender.com/api/auth/login'
     const ErrorDisplay = document.getElementById('ErrorDisplay')
-
+  
     let data = {
         email: document.getElementById('emailInput').value,
         password: document.getElementById('passwordInput').value
     }
-
+  
     let response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(data),   
@@ -16,15 +18,20 @@ async function loginRequest() {
             "Content-Type": "application/json",
         }
     })
-
+  
     const realResponse = await response.json()
 
+    Cookies.set('token', realResponse.token)
+  
     ErrorDisplay.textContent = realResponse.message
-
+    if (response.status == 200) {
+        location.href = `/connect`
+    }
     console.log(response.status)
-}
+  }
 
 export default function Login() {
+
     return (
         <>
         <Background/>
