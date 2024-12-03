@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import Connect from './pages/Connect'
+import Auth from './pages/Auth'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +20,8 @@ function App() {
       <Route path="/home" element={<Home/>} />
       <Route path="/signup" element={<SignUp/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="/connect" element={<Connect/>} />
+      <Route path="/auth" element={<Auth/>} />
     </Routes>
     </BrowserRouter>
     </>

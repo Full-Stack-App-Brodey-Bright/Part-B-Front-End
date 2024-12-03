@@ -21,7 +21,7 @@ async function loginRequest() {
 
     ErrorDisplay.textContent = realResponse.message
 
-    console.log(realResponse)
+    console.log(response.status)
 }
 
 export default function Login() {
@@ -40,7 +40,7 @@ export default function Login() {
                     <button className='FormInput' onClick={loginRequest} type="button">Login</button>
                     <div className="AlreadyAUser">
                         <p>Don't have an account?</p>
-                        <a href="http://127.0.0.1:5173/signup">Sign up</a>
+                        <a href="/signup">Sign up</a>
                     </div>
                 </form>
                 <p id="ErrorDisplay"></p>

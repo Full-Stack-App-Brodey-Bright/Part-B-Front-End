@@ -44,7 +44,7 @@ export default function SignUp() {
                     <button className='FormInput' onClick={signUpRequest} type="button">Sign Up</button>
                     <div className="AlreadyAUser">
                         <p>Already a user?</p>
-                        <a href="http://127.0.0.1:5173/login">Login</a>
+                        <a href="/login">Login</a>
                     </div>
                 </form>
                 <p id="ErrorDisplay"></p>
