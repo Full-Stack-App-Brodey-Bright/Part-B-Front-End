@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 async function getTest() {
     console.log(Cookies.get('YtToken'))
-    let response2 = await fetch(`https://youtube.googleapis.com/youtube/v3/subscriptions?part=subscriberSnippet&mine=true&`, {
+    let response2 = await fetch(`https://youtube.googleapis.com/youtube/v3/subscriptions?part=subscriberSnippet&mine=true`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${Cookies.get('YtToken')}`

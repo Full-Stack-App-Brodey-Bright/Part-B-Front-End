@@ -113,3 +113,22 @@
   width: 20vw;
   height: 4vh;
 }
+
+.PlaylistContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70vw;
+}
+
+.PlaylistDash {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  width: 20vh;
+  border-color: black;
+  border-width: 10px;
+  border-style: solid;
+  background-color: aqua;
+}

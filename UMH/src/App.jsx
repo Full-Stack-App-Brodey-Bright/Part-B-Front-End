@@ -8,6 +8,8 @@ import Connect from "./pages/Connect";
 import Auth from "./pages/Auth";
 import Cookies from "js-cookie";
 import Dashboard from "./pages/Dashboard";
+import Playlists from "./pages/Playlists";
+import Playlist from './pages/Playlist'
 
 function App() {
     useEffect(() => {
@@ -24,6 +26,8 @@ function App() {
                     <Route path="/connect" element={<Connect />} />
                     <Route path="/auth" element={<Auth />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/playlists" element={<Playlists />} />
+                    <Route path="/playlist/:id" element={<Playlist />} />
                 </Routes>
             </BrowserRouter>
         </>
