@@ -6,7 +6,7 @@ export default function Playlists() {
     const [playlist, setPlaylist] = useState([])
         async function getPlaylist() {
             let response = await fetch(
-                `http://localhost:5000/api/playlists?id=${window.location.pathname.split('/')[2]}`,
+                `https://part-b-server.onrender.com/api/playlists?id=${window.location.pathname.split('/')[2]}`,
                 {
                     method: "GET",
                     headers: {

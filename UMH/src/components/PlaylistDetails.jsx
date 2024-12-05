@@ -12,7 +12,7 @@ export default class PlaylistDetails extends React.Component {
             <div>
                 <h1>{this.props.title}</h1>
                 <h2>{this.props.description}</h2>
-                <button onClick={() => {location.href = `http://127.0.0.1:5173/playlist/${this.props.id}`}}>
+                <button onClick={() => {location.href = `/playlist/${this.props.id}`}}>
                     Play
                 </button>
                 <div>
