@@ -17,7 +17,7 @@ export default class PlaylistDetails extends React.Component {
                 </button>
                 <div>
                     {
-                        this.props.tracks.map((track) => <Track title={track.title} artist={track.artist} />)
+                        this.props.tracks.map((track) => <Track title={track.title} artist={track.artist} url={track.url}/>)
                     }
                 </div>
 
