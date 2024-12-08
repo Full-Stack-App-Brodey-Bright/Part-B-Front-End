@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Track from "./Track";
 
-
+// playlist selected to show tracks and other data
 export default class PlaylistDetails extends React.Component {
     constructor(props) {
         super(props);

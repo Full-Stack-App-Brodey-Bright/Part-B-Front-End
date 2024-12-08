@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactPlayer from 'react-player'
 import Player from "./Player";
 
+
+// individual track component
 export default class Track extends React.Component {
     constructor(props) {
         super(props);

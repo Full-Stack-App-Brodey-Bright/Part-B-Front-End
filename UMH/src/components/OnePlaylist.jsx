@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 
+
+// individual playlist boxes when displaying multiple playlists
 export default class OnePlaylist extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
 
     render() {
         return (

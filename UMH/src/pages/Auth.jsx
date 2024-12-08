@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 
 
+// handles youtube oauth2 and save token to db
 export default async function Auth() {
     let hash = window.location.hash
     let accessToken = hash.split('&')[0].split('=')[1]

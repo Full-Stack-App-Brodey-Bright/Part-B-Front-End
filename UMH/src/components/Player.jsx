@@ -1,7 +1,7 @@
 import React from "react"
 import ReactPlayer from "react-player"
 
-
+// player with play button
 export default function Player({url}) {
     const [playing, setPlaying] = React.useState(false)
     const playerUrl = `https://www.youtube.com/watch?v=${url}`
