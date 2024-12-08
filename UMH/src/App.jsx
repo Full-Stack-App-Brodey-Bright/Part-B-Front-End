@@ -1,4 +1,4 @@
-import { useState, createContext, Provider, useEffect } from "react";
+import React, { useState, createContext, Provider, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -10,11 +10,15 @@ import Cookies from "js-cookie";
 import Dashboard from "./pages/Dashboard";
 import Playlists from "./pages/Playlists";
 import Playlist from './pages/Playlist'
+import Player from "./components/Player";
 
 function App() {
     useEffect(() => {
         console.log(Cookies.get("token"));
     });
+    
+    const [playlist, setPlaylist] = useState([])
+    const [url, setUrl] = useState('')
     return (
         <>
             <BrowserRouter>
@@ -27,9 +31,10 @@ function App() {
                     <Route path="/auth" element={<Auth />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/playlists" element={<Playlists />} />
-                    <Route path="/playlist/:id" element={<Playlist />} />
+                    <Route path="/playlist/:id" element={<Playlist playlist={playlist} setPlaylist={setPlaylist} setUrl={setUrl}/>} />
                 </Routes>
             </BrowserRouter>
+            <Player url={url} setUrl={setUrl} playlist={playlist} setPlaylist={setPlaylist}/>
         </>
     );
 }

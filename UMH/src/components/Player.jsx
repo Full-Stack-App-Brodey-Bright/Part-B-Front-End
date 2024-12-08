@@ -1,14 +1,102 @@
-import React from "react"
-import ReactPlayer from "react-player"
+import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
+import Cookies from "js-cookie";
+
+let urlGlobal = "";
+let currentTrack = {};
+export async function updateTrack(currentTrack) {
+
+    const response = await fetch(
+        "https://part-b-server.onrender.com/api/queue/state",
+        {
+            method: "PATCH",
+            body: JSON.stringify({ currentTrack: currentTrack }),
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`,
+                "Content-Type": "application/json",
+            },
+        }
+    );
+    let objResponse = await response.json();
+    console.log(await objResponse.queue.currentTrack.url);
+    urlGlobal = await objResponse.queue.currentTrack.url;
+    currentTrack = await objResponse.queue.currentTrack
+    // return await response.queue.currentTrack
+}
+export async function queueCreate(playlist) {
+    const response = await fetch(
+        "https://part-b-server.onrender.com/api/queue",
+        {
+            method: "POST",
+            body: JSON.stringify({ playlistId: playlist[0]._id }),
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`,
+                "Content-Type": "application/json",
+            },
+        }
+    );
+    let objResponse = await response.json();
+    console.log(await objResponse.queue.currentTrack.url);
+    urlGlobal = await objResponse.queue.currentTrack.url;
+    currentTrack = await objResponse.queue.currentTrack
+    // return await response.queue.currentTrack
+}
+export async function queueNext(playlist) {
+    const response = await fetch(
+        "https://part-b-server.onrender.com/api/queue/next",
+        {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`,
+            },
+        }
+    );
+    let objResponse = await response.json();
+    console.log(await objResponse.nextTrack.url);
+    urlGlobal = await objResponse.nextTrack.url;
+    currentTrack = await objResponse.queue.nextTrack;
+    // return await response.queue.currentTrack
+}
 
 // player with play button
-export default function Player({url}) {
-    const [playing, setPlaying] = React.useState(false)
-    const playerUrl = `https://www.youtube.com/watch?v=${url}`
-    return(
-    <div>
-        <ReactPlayer url={playerUrl} playing={playing} height='0px' />
-        <button onClick={() => {setPlaying(!playing), console.log('play')}}>Play</button>
-    </div>
-    )
+export default function Player({ playlist, setPlaylist, url, setUrl }) {
+    const [playing, setPlaying] = React.useState(false);
+    const [canEnd, setCanEnd] = React.useState(false);
+    var playerUrl = `https://www.youtube.com/watch?v=${url}`;
+    setUrl(urlGlobal)
+    useEffect(() => {
+        setPlaying(true)
+    },[urlGlobal])
+    let playingD = document.getElementById('playingD')
+
+
+    return (
+        <div>
+            <ReactPlayer
+                url={playerUrl}
+                playing={playing}
+                height="0px"
+                onError={async () => {
+                    if (playing && canEnd) {
+                        await queueNext(playlist);
+                        setUrl(await urlGlobal);
+                    }
+                }}
+                onPlay={async () => {await setCanEnd(true)}}
+                onEnded={async () => {if (playing && canEnd) {
+                    setPlaying(false)
+                    await queueNext(await playlist)
+                    setUrl(await urlGlobal)
+                    setPlaying(true)
+                }}}
+            />
+            <button id="playingD"
+                onClick={() => {
+                    setPlaying(!playing) ,console.log("play");
+                }}
+            >
+                Player
+            </button>
+        </div>
+    );
 }

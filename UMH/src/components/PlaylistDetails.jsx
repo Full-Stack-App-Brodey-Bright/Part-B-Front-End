@@ -6,7 +6,6 @@ export default class PlaylistDetails extends React.Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
             <div>
@@ -17,7 +16,7 @@ export default class PlaylistDetails extends React.Component {
                 </button>
                 <div>
                     {
-                        this.props.tracks.map((track) => <Track title={track.title} artist={track.artist} url={track.url}/>)
+                        this.props.tracks.map((track) => <Track setUrl={this.props.setUrl} track={track} title={track.title} artist={track.artist} url={track.url}/>)
                     }
                 </div>
 

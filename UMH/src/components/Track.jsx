@@ -1,21 +1,14 @@
-import React, { useState } from "react";
-import ReactPlayer from 'react-player'
-import Player from "./Player";
-
-
-// individual track component
-export default class Track extends React.Component {
-    constructor(props) {
-        super(props);
-    } 
-    
-    render() {
-        return (
+import React, {useState} from "react";
+import { updateTrack } from "./Player";
+export default function Track ({title, artist, track, setUrl}) {
+    return (
             <div>
-                <h1>{this.props.title}</h1>
-                <h2>{this.props.artist}</h2>
-                <Player url={this.props.url}/>
+                <h1>{title}</h1>
+                <h2>{artist}</h2>
+                <button onClick={async () => {await updateTrack(track), setUrl(track.url)}}>
+                    Play Song
+                </button>
             </div>
         );
     }
-}
+
