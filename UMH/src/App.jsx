@@ -31,7 +31,7 @@ function App() {
                     <Route path="/auth" element={<Auth />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/playlists" element={<Playlists />} />
-                    <Route path="/playlist/:id" element={<Playlist playlist={playlist} setPlaylist={setPlaylist} setUrl={setUrl}/>} />
+                    <Route path="/playlist/:id" element={<Playlist playlist={playlist} setPlaylist={setPlaylist} setUrl={setUrl} url={url}/>} />
                 </Routes>
             </BrowserRouter>
             <Player url={url} setUrl={setUrl} playlist={playlist} setPlaylist={setPlaylist}/>

@@ -71,7 +71,7 @@ export default function Player({ playlist, setPlaylist, url, setUrl }) {
 
 
     return (
-        <div>
+        <div className="playerContainer">
             <ReactPlayer
                 url={playerUrl}
                 playing={playing}
@@ -82,8 +82,10 @@ export default function Player({ playlist, setPlaylist, url, setUrl }) {
                         setUrl(await urlGlobal);
                     }
                 }}
-                onPlay={async () => {await setCanEnd(true)}}
-                onEnded={async () => {if (playing && canEnd) {
+                onPlay={async () => {await setCanEnd(true), playingD.textContent = 'Pause'}}
+                onPause={() => {playingD.textContent = 'Play'}}
+                onEnded={async () => {
+                    if (playing && canEnd) {
                     setPlaying(false)
                     await queueNext(await playlist)
                     setUrl(await urlGlobal)

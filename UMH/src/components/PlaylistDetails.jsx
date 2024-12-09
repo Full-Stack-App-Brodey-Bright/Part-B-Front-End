@@ -9,18 +9,23 @@ export default class PlaylistDetails extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.title}</h1>
-                <h2>{this.props.description}</h2>
-                <button onClick={() => {location.href = `/playlist/${this.props.id}`}}>
-                    Play
-                </button>
-                <div>
-                    {
-                        this.props.tracks.map((track) => <Track setUrl={this.props.setUrl} track={track} title={track.title} artist={track.artist} url={track.url}/>)
-                    }
+                <div className="playlistInfo">
+                    <h1>{this.props.title}</h1>
+                    <h2>{this.props.description}</h2>
                 </div>
-
+                <div>
+                    {this.props.tracks.map((track) => (
+                        <Track
+                            setUrl={this.props.setUrl}
+                            track={track}
+                            title={track.title}
+                            artist={track.artist}
+                            url={track.url}
+                            playingUrl={this.props.url}
+                        />
+                    ))}
+                </div>
             </div>
-        )
+        );
     }
 }
