@@ -1,13 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { updateTrack } from "./Player";
 
 let thisTrack =  document.getElementsByClassName('playlistTrack')
-export default function Track ({title, artist, track, setUrl, playingUrl}) {
-    const [color, setcolor] = useState('grey')
-
-    
+export default function Track ({title, artist, track, setUrl}) {
     return (
-            <div style={{backgroundColor : color}} className="playlistTrack">
+            <div className="playlistTrack">
                 <div className="trackInfo">
                 <h1>{title}</h1>
                 <h4>{artist}</h4>

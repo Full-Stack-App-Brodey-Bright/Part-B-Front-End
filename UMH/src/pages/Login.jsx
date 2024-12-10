@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import Background from "../components/Background";
+import Header from "../components/Header";
 import Cookies from "js-cookie";
 import sp from "../assets/sp.svg";
 
@@ -12,7 +12,7 @@ export default function Login() {
         const ErrorDisplay = document.getElementById("ErrorDisplay");
 
         let data = {
-            email: document.getElementById("emailInput").value,
+            email: document.getElementById("emailInput").value.toLowerCase(),
             password: document.getElementById("passwordInput").value,
         };
 
@@ -38,7 +38,7 @@ export default function Login() {
 
     return (
         <>
-            <Background />
+            <Header />
             <div className="centerer">
                 <section className="SignUpBox">
                     <h1>Login</h1>

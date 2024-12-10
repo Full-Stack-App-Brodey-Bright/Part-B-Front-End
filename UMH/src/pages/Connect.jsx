@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Background from "../components/Background";
+import Header from "../components/Header";
 import Cookies from 'js-cookie'
 
 
@@ -8,7 +8,7 @@ export default function Connect() {
     let disabled = Cookies.get('YTConnected?')
     return (
         <div>
-            <Background></Background>
+            <Header/>
             <div className="centerer">
                 <div className="ConnectBox">
                     <button disabled={disabled}
@@ -23,10 +23,10 @@ export default function Connect() {
                     >
                         Youtube
                     </button>
-                    <button disabled={!disabled} onClick={() => {
+                    <button onClick={() => {
                       location.href = '/dashboard'
                     }}>
-                        Next
+                        Skip
                     </button>
                 </div>
             </div>

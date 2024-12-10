@@ -1,5 +1,5 @@
 
-export default function Background() {
+export default function Header() {
     return (
         <nav className="Back">
             

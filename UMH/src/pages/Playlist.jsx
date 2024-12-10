@@ -3,8 +3,10 @@ import Cookies from "js-cookie";
 import PlaylistDetails from "../components/PlaylistDetails";
 import { queueCreate } from "../components/Player";
 import AddSong from "../components/AddSong";
+import Library from "../components/Library";
 
-export default function Playlist({ playlist, setPlaylist, setUrl, url }) {
+export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayerHidden }) {
+    setPlayerHidden(false)
     const [hidden, setHidden] = useState(true)
     async function addTrack() {
         let response = await fetch(
@@ -35,20 +37,22 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url }) {
             }
         );
         const objResponse = await response.json();
-        console.log(objResponse.playlists[0].tracks);
-        await setPlaylist(objResponse.playlists);
+        await setPlaylist(await objResponse.playlists);
     }
     useEffect(() => {
         getPlaylist();
     }, []);
     useEffect(() => {
-        queueCreate(playlist);
-
+        async function wait() {
+            queueCreate(await playlist);
+        }
+        wait()
     }, [playlist]);
 
 
     return (
         <div>
+            <Library/>
             <div hidden={hidden}><AddSong tracks={async () => {
                 return(await playlist[0].tracks )
                 
@@ -59,7 +63,7 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url }) {
                         setUrl={setUrl}
                         title={details.title}
                         description={details.description}
-                        creator={details.creator}
+                        username={details.username}
                         tracks={details.tracks}
                         id={details._id}
                         url={url}

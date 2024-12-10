@@ -10,12 +10,11 @@ export default class OnePlaylist extends React.Component {
 
     render() {
         return (
-            <div className="PlaylistDash">
+            <div className="PlaylistDash" onClick={() => {location.href = `/playlist/${this.props.id}`}}>
+                <div className="PlaylistDashInfo">
                 <h1>{this.props.title}</h1>
-                <h2>{this.props.description}</h2>
-                <button onClick={() => {location.href = `/playlist/${this.props.id}`}}>
-                    Play
-                </button>
+                <h2>{this.props.creator}</h2>
+                </div>
             </div>
         )
     }

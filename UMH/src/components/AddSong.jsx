@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import Background from "./Background";
+import Background from "./Header";
 import React, { useState } from "react";
 
 export default function AddSong({ tracks }) {
@@ -33,7 +33,9 @@ export default function AddSong({ tracks }) {
 
         const objResponse = await response.json()
         console.log(await objResponse)
-
+        if (response.status == 200) {
+            location.href = location.href
+        }
     }
     return (
         <div>

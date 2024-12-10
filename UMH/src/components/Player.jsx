@@ -18,7 +18,6 @@ export async function updateTrack(currentTrack) {
         }
     );
     let objResponse = await response.json();
-    console.log(await objResponse.queue.currentTrack.url);
     urlGlobal = await objResponse.queue.currentTrack.url;
     currentTrack = await objResponse.queue.currentTrack
     // return await response.queue.currentTrack
@@ -36,7 +35,6 @@ export async function queueCreate(playlist) {
         }
     );
     let objResponse = await response.json();
-    console.log(await objResponse.queue.currentTrack.url);
     urlGlobal = await objResponse.queue.currentTrack.url;
     currentTrack = await objResponse.queue.currentTrack
     // return await response.queue.currentTrack
@@ -52,14 +50,14 @@ export async function queueNext(playlist) {
         }
     );
     let objResponse = await response.json();
-    console.log(await objResponse.nextTrack.url);
     urlGlobal = await objResponse.nextTrack.url;
-    currentTrack = await objResponse.queue.nextTrack;
+    console.log(await objResponse)
+    currentTrack = await objResponse.nextTrack;
     // return await response.queue.currentTrack
 }
 
 // player with play button
-export default function Player({ playlist, setPlaylist, url, setUrl }) {
+export default function Player({ playlist, setPlaylist, url, setUrl, playerHidden}) {
     const [playing, setPlaying] = React.useState(false);
     const [canEnd, setCanEnd] = React.useState(false);
     var playerUrl = `https://www.youtube.com/watch?v=${url}`;
@@ -68,6 +66,7 @@ export default function Player({ playlist, setPlaylist, url, setUrl }) {
         setPlaying(true)
     },[urlGlobal])
     let playingD = document.getElementById('playingD')
+    let playerContainer = document.getElementsByClassName('playerContainer')
 
 
     return (
@@ -92,7 +91,7 @@ export default function Player({ playlist, setPlaylist, url, setUrl }) {
                     setPlaying(true)
                 }}}
             />
-            <button id="playingD"
+            <button hidden={playerHidden} id="playingD"
                 onClick={() => {
                     setPlaying(!playing) ,console.log("play");
                 }}
