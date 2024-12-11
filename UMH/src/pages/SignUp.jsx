@@ -27,6 +27,7 @@ export default function SignUp() {
     
         const realResponse = await response.json();
         Cookies.set("token", await realResponse.token);
+        Cookies.set("username", await realResponse.username);
     
         ErrorDisplay.textContent = realResponse.message;
         setSpinnerHidden(true);

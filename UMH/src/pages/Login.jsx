@@ -27,6 +27,7 @@ export default function Login() {
         const realResponse = await response.json();
 
         Cookies.set("token", await realResponse.token);
+        Cookies.set("username", await realResponse.username);
         setSpinnerHidden(true);
 
         ErrorDisplay.textContent = realResponse.message;

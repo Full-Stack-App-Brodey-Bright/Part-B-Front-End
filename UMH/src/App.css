@@ -122,10 +122,12 @@
 
 .PlaylistContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content:flex-start;
   color: black;
+  flex-wrap: wrap;
+  margin-left: 0.5vw;
 }
 
 .PlaylistDash {
@@ -178,6 +180,11 @@
   padding: 10px;
 }
 
+.playlistTrack:hover {
+  cursor: pointer;
+  border-color: aqua;
+}
+
 .playlistInfo {
   display: flex;
   flex-direction: column;
@@ -224,6 +231,11 @@
   color: aliceblue;
 }
 
+.addTrackContainer:hover {
+  cursor: pointer;
+  border-color: aqua;
+}
+
 .addSongBox {
   background-color: rgb(216, 216, 250);
   display: flex;
@@ -243,7 +255,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 80vh;
   position: absolute;
 }
 
@@ -268,4 +280,135 @@
   background-color: lightgray;
   height: 6vw;
   z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
 }
+
+.navTitle {
+  font-size: 4vw;
+}
+
+.iconTitle {
+  display: flex;
+  align-items: center;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.navTitle:hover{
+  cursor: pointer;
+}
+
+.icon {
+  background-color: black;
+  width: 4vw;
+  height: 4vw;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  border-radius: 100%;
+}
+
+.dropDownMenu {
+  background-color: black;
+  width: 4vw;
+  height: 4vw;
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  border-radius: 25px;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  width: 30vw;
+  height: 3vw;
+  position: fixed;
+  pointer-events: none
+}
+
+#searchBar {
+  width: 27vw;
+  height: 3vw;
+  background-color: lightgray;
+  font-size: 1.5vw;
+  border-style: hidden;
+  margin-left: 3vw;
+  position: sticky;
+}
+
+#searchBar:focus {
+  outline: none;
+}
+
+#searchBar:focus + .searchBar{
+  border-color:aliceblue;
+}
+
+.searchBarHolder {
+  display: inline-flex;
+}
+
+.createPlaylistBox {
+  background-color: rgb(216, 216, 250);
+  display: flex;
+  justify-content: top;
+  padding-top: 5vh;
+  width: 60vw;
+  height: 60vh;
+  position: fixed;
+  z-index: 10;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 100vw;
+  font-size: larger;
+}
+
+.createPlaylistForm {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+  position: absolute;
+}
+
+.dashboardMain {
+  display: flex;
+  flex-direction: column;
+  margin-left: 21vw;
+  margin-top: 1vw;
+  width: 80vw;
+}
+
+.dashboardMain > .playlistsHolder > .PlaylistContainer > .PlaylistDash {
+  height: 10vw;
+  width: 10vw;
+  margin-right: 0.5vh;
+  flex: none;
+}
+
+.dashboardMain > .playlistsHolder > .PlaylistContainer > .PlaylistDash:hover {
+  border-color: aqua;
+}
+
+.dashboardMain > .playlistsHolder > .PlaylistContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 79vw;
+  overflow-x: scroll;
+  margin-left: 0;
+}
+
+.dashSubtitle {
+  margin-top: 1vw;
+}
+
+

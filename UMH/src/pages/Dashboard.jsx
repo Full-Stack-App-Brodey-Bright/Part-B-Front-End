@@ -27,9 +27,10 @@ export default function Dashboard({setPlayerHidden}) {
             <Navbar />
             <div className="dashboard">
                 <Library/>
-                <div>
-                    <h1 id="test">hi</h1>
-                    <button onClick={getTest}>huh88j</button>
+                <div className="dashboardMain">
+                    <h1>Welcome {Cookies.get('username')}!</h1>
+                    <h2 className="dashSubtitle">All Playlists</h2>
+                    <Playlists all={true}/>
                 </div>
             </div>
         </div>

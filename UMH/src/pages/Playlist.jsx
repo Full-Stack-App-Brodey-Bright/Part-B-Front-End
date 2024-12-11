@@ -4,6 +4,7 @@ import PlaylistDetails from "../components/PlaylistDetails";
 import { queueCreate } from "../components/Player";
 import AddSong from "../components/AddSong";
 import Library from "../components/Library";
+import Navbar from "../components/Navbar";
 
 export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayerHidden }) {
     setPlayerHidden(false)
@@ -37,6 +38,7 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayer
             }
         );
         const objResponse = await response.json();
+        console.log(objResponse.playlists)
         await setPlaylist(await objResponse.playlists);
     }
     useEffect(() => {
@@ -52,6 +54,7 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayer
 
     return (
         <div>
+            <Navbar/>
             <Library/>
             <div hidden={hidden}><AddSong tracks={async () => {
                 return(await playlist[0].tracks )
@@ -70,10 +73,9 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayer
                     />
                 ))}
                 <div className="addTrackContainer">
-                    <div className="addSong">
+                    <div onClick={async () => {setHidden(false)}} className="addSong">
                         <h1>Add New Song</h1>
                     </div>
-                    <button onClick={async () => {setHidden(false)}}>Add</button>
                 </div>
             </div>
         </div>
