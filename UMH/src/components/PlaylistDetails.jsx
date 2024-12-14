@@ -24,7 +24,7 @@ export default class PlaylistDetails extends React.Component {
                     <h3>{this.props.username}</h3>
                     <h3>{this.props.description}</h3>
                 </div>
-                <div>
+                <div className="scroll">
                     {arr = this.props.tracks.map((track) => (
                         <Track
                             setUrl={this.props.setUrl}

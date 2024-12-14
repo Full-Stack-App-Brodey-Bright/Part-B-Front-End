@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from "react";
 import { updateTrack, playYtSearchTrack } from "./Player";
 import Playlists from "./Playlists";
+import PlaylistGet from "./PlaylistGet";
 
-let thisTrack =  document.getElementsByClassName('playlistTrack')
+
 export default function Track ({title, artist, track, setUrl, trackUrl}) {
-    const [showPlaylists, setShowPlaylists] = useState(false)
-    function ChoosePlaylist() {
-        if (showPlaylists == true) {
-        return <div></div>
-        }
-    }
+    const [hidePlaylists, setHidePlaylists] = useState(true)
     return (
         <div className="trackAndButton">
             <div className="playlistTrack" onClick={async () => {if (trackUrl) {await playYtSearchTrack(trackUrl), setUrl(trackUrl)}else {await updateTrack(track), setUrl(track.url)}}}>
@@ -18,10 +14,10 @@ export default function Track ({title, artist, track, setUrl, trackUrl}) {
                 <h4>{artist}</h4>
                 </div>
             </div>
-            <button className="addToPlaylistButton" onClick={() => {setShowPlaylists(true)}} >
+            <button className="addToPlaylistButton" onClick={() => {setHidePlaylists(false)}} >
                     Add To Playlist
                 </button>
-                {ChoosePlaylist()}
+                <div hidden={hidePlaylists}><PlaylistGet title={title} artist={artist} trackUrl={trackUrl}/></div>
         </div>
         );
     }
