@@ -4,13 +4,13 @@ import OnePlaylist from "./OnePlaylist";
 import sp from "../assets/sp.svg";
 
 // gets playlists from the api
-export default function Playlists({all}) {
+export default function Playlists({all, searchQuery}) {
     const [spinnerHidden, setSpinnerHidden] = useState(true);
     const [playlists, setPlaylists] = useState([]);
     async function getPlaylists() {
         setSpinnerHidden(false)
         let response = await fetch(
-            `https://part-b-server.onrender.com/api/playlists?all=${all}`,
+            `https://part-b-server.onrender.com/api/playlists?all=${all}&searchQuery=${searchQuery}`,
             {
                 method: "GET",
                 headers: {
@@ -26,7 +26,7 @@ export default function Playlists({all}) {
     // if playlists exist stop sending requests
     useEffect(() => {
         getPlaylists();
-    }, []);
+    }, [searchQuery]);
 
     return (
         <div className="playlistsHolder">

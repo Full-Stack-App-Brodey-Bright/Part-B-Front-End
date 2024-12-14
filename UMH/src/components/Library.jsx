@@ -22,7 +22,7 @@ export default function Library() {
             </div>
 
         </div>
-        <Playlists all={false}/>
+        <Playlists all={false} searchQuery={''}/>
     </div>
     )
 }

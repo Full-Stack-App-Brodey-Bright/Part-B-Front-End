@@ -6,9 +6,16 @@ import AddSong from "../components/AddSong";
 import Library from "../components/Library";
 import Navbar from "../components/Navbar";
 
-export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayerHidden }) {
-    setPlayerHidden(false)
-    const [hidden, setHidden] = useState(true)
+export default function Playlist({
+    playlist,
+    setPlaylist,
+    setUrl,
+    url,
+    setPlayerHidden,
+}) {
+    setPlayerHidden(false);
+    const [hidden, setHidden] = useState(true);
+    const [isOwner, setIsOwner] = useState(false);
     async function addTrack() {
         let response = await fetch(
             `https://part-b-server.onrender.com/api/playlists?id=${
@@ -38,7 +45,6 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayer
             }
         );
         const objResponse = await response.json();
-        console.log(objResponse.playlists)
         await setPlaylist(await objResponse.playlists);
     }
     useEffect(() => {
@@ -47,19 +53,39 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayer
     useEffect(() => {
         async function wait() {
             queueCreate(await playlist);
+            setIsOwner((await playlist[0].username) == Cookies.get("username"));
         }
-        wait()
+        wait();
     }, [playlist]);
 
-
+    function checkIfOwner() {
+        if (isOwner) {
+            return (
+                <div
+                    onClick={async () => {
+                        setHidden(false);
+                    }}
+                    className="addTrackContainer"
+                >
+                    <div className="addSong">
+                        <h1>Add New Song</h1>
+                    </div>
+                </div>
+            );
+        }
+    }
     return (
         <div>
-            <Navbar/>
-            <Library/>
-            <div hidden={hidden}><AddSong tracks={async () => {
-                return(await playlist[0].tracks )
-                
-                }}/></div>
+            <Navbar />
+            <Library />
+            <div hidden={hidden}>
+                <AddSong
+                    setHidden={setHidden}
+                    tracks={async () => {
+                        return await playlist[0].tracks;
+                    }}
+                />
+            </div>
             <div className="test">
                 {playlist.map((details) => (
                     <PlaylistDetails
@@ -72,11 +98,7 @@ export default function Playlist({ playlist, setPlaylist, setUrl, url, setPlayer
                         url={url}
                     />
                 ))}
-                <div className="addTrackContainer">
-                    <div onClick={async () => {setHidden(false)}} className="addSong">
-                        <h1>Add New Song</h1>
-                    </div>
-                </div>
+                {checkIfOwner()}
             </div>
         </div>
     );

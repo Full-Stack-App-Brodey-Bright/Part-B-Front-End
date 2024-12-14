@@ -1,25 +1,53 @@
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar({setSearchType, setSearchQuery}) {
 
+    async function searchRequest(e){
+        e.preventDefault()
+        let searchType = document.getElementById('searchType').value
+        setSearchType(searchType)
+        let searchQuery = document.getElementById("searchBar").value
+        setSearchQuery(searchQuery)
+        console.log('search: ' + searchQuery + searchType)
+    }
     return (
         <div className="Navbar">
             <div className="iconTitle">
-                <div className="icon" onClick={() => {location.href = '/dashboard'}}>
-                
+                <div
+                    className="icon"
+                    onClick={() => {
+                        location.href = "/dashboard";
+                    }}
+                ></div>
+                <h1
+                    onClick={() => {
+                        location.href = "/dashboard";
+                    }}
+                    className="navTitle"
+                >
+                    UMH
+                </h1>
+            </div>
+            <form onSubmit={searchRequest}>
+                <div className="searchTypeMenu">
+                    <label for="searchType">Searching for: </label>
+                    <select name="searchType" id="searchType">
+                        <option value="Playlists" selected>Playlists</option>
+                        <option value="Tracks">Tracks</option>
+                        <option value="Users">Users</option>
+                        <option value="Artists">Artists</option>
+                    </select>
                 </div>
-                <h1 onClick={() => {location.href = '/dashboard'}} className="navTitle">UMH</h1>
-            </div>
-            <div className="searchBarHolder">
-                <input id="searchBar" type="text" placeholder="Search"></input>
-                <div className="searchBar">
-                
+                <div className="searchBarHolder">
+                    <input
+                        id="searchBar"
+                        type="text"
+                        placeholder="Search"
+                    ></input>
+                    <div className="searchBar"></div>
                 </div>
-            </div>
-
-            <div className="dropDownMenu">
-
-            </div>
+            </form>
+            <div className="dropDownMenu"></div>
         </div>
-    )
+    );
 }

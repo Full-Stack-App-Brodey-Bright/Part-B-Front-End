@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import Background from "./Header";
 import React, { useState } from "react";
 
-export default function AddSong({ tracks }) {
+export default function AddSong({ tracks, setHidden }) {
     async function addSongRequest() {
         let newTracks = await tracks()
         newTracks.forEach(element => {
@@ -41,6 +41,7 @@ export default function AddSong({ tracks }) {
         <div>
             <div className="centererAddSong">
                 <div className="addSongBox">
+                    <button onClick={() => {setHidden(true)}}>Close</button>
                     <form className="addSongForm">
                         <p>Title</p>
                         <input

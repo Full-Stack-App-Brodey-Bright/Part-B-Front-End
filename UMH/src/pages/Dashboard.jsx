@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import Playlists from "../components/Playlists";
 import Navbar from "../components/Navbar";
 import Library from "../components/Library";
+import { useState } from "react";
 
 async function getTest() {
     console.log(Cookies.get("YtToken"));
@@ -21,16 +22,27 @@ async function getTest() {
 }
 
 export default function Dashboard({setPlayerHidden}) {
+    const [searchQuery, setSearchQuery] = useState('')
+    const testP = () => {
+        if (searchType == 'Playlists') {
+            return <Playlists all={true} searchQuery={searchQuery}/>
+        }
+    }
+    const [searchType, setSearchType] = useState('Playlists')
     setPlayerHidden(false)
+
+    let searchSubtitle = `Searching: ${searchQuery} in  `
     return (
         <div>
-            <Navbar />
+            <Navbar setSearchType={setSearchType} setSearchQuery={setSearchQuery}/>
             <div className="dashboard">
                 <Library/>
                 <div className="dashboardMain">
                     <h1>Welcome {Cookies.get('username')}!</h1>
-                    <h2 className="dashSubtitle">All Playlists</h2>
-                    <Playlists all={true}/>
+                    <h2 className="dashSubtitle">{ searchQuery || 'All Playlists'}</h2>
+                    {
+                        testP()
+                    }
                 </div>
             </div>
         </div>

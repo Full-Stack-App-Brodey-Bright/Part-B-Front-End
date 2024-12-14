@@ -352,6 +352,11 @@
   border-color:aliceblue;
 }
 
+input {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
 .searchBarHolder {
   display: inline-flex;
 }
@@ -409,6 +414,20 @@
 
 .dashSubtitle {
   margin-top: 1vw;
+}
+
+.searchTypeMenu {
+  font-size: 1vw;
+  margin-bottom: 5px;
+  margin-left: 1vw;
+}
+
+#searchType {
+  font-size: 1vw;
+  padding: 0.2vw 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
 }
 
 
