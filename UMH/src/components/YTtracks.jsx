@@ -8,7 +8,7 @@ export default function YTtracks ({searchType, searchQuery, setUrl}) {
         let response = await fetch(
             `https://www.googleapis.com/youtube/v3/search?key=${
                 import.meta.env.VITE_YTAPI_KEY
-            }&part=snippet&order=relevence&q=${searchQuery.replace(
+            }&part=snippet&order=relevance&q=${searchQuery.replace(
                 " ",
                 "+"
             )}&type=video`,
