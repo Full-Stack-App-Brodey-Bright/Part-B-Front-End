@@ -11,7 +11,7 @@ export default function YTtracks ({searchType, searchQuery, setUrl}) {
             }&part=snippet&order=viewCount&q=${searchQuery.replace(
                 " ",
                 "+"
-            )}&type=video&videoDefinition=high`,
+            )}&type=video`,
             {
                 method: "GET",
             }
