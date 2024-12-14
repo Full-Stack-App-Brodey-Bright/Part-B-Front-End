@@ -76,7 +76,9 @@ export default function Playlist({
     }
     return (
         <div>
-            <Navbar />
+            <Navbar
+                notDashboard={true}
+            />
             <Library />
             <div hidden={hidden}>
                 <AddSong

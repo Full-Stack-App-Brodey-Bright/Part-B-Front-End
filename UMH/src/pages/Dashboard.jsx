@@ -2,7 +2,9 @@ import Cookies from "js-cookie";
 import Playlists from "../components/Playlists";
 import Navbar from "../components/Navbar";
 import Library from "../components/Library";
+import Track from "../components/Track";
 import { useState } from "react";
+import YTtracks from "../components/YTtracks";
 
 async function getTest() {
     console.log(Cookies.get("YtToken"));
@@ -21,27 +23,43 @@ async function getTest() {
     console.log(realResponse);
 }
 
-export default function Dashboard({setPlayerHidden}) {
-    const [searchQuery, setSearchQuery] = useState('')
+export default function Dashboard({
+    setPlayerHidden,
+    setUrl,
+    searchQuery,
+    setSearchQuery,
+    searchType,
+    setSearchType,
+}) {
     const testP = () => {
-        if (searchType == 'Playlists') {
-            return <Playlists all={true} searchQuery={searchQuery}/>
+        if (searchType == "Playlists") {
+            return <Playlists all={true} searchQuery={searchQuery} />;
         }
-    }
-    const [searchType, setSearchType] = useState('Playlists')
-    setPlayerHidden(false)
+    };
 
-    let searchSubtitle = `Searching: ${searchQuery} in  `
+    setPlayerHidden(false);
+
+    let searchSubtitle = `Searching: ${searchQuery} in  `;
     return (
-        <div>
-            <Navbar setSearchType={setSearchType} setSearchQuery={setSearchQuery}/>
+        <div >
+            <Navbar
+                setSearchType={setSearchType}
+                setSearchQuery={setSearchQuery}
+            />
             <div className="dashboard">
-                <Library/>
+                <Library />
                 <div className="dashboardMain">
-                    <h1>Welcome {Cookies.get('username')}!</h1>
-                    <h2 className="dashSubtitle">{ searchQuery || 'All Playlists'}</h2>
+                    <h1>Welcome {Cookies.get("username")}!</h1>
+                    <h2 className="dashSubtitle">
+                        {searchQuery || "All Playlists"}
+                    </h2>
+                    {testP()}
                     {
-                        testP()
+                        <YTtracks
+                            searchType={searchType}
+                            searchQuery={searchQuery}
+                            setUrl={setUrl}
+                        />
                     }
                 </div>
             </div>

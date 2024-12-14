@@ -4,6 +4,10 @@ import Cookies from "js-cookie";
 
 let urlGlobal = "";
 let currentTrack = {};
+export async function playYtSearchTrack(url) {
+    urlGlobal = url
+}
+
 export async function updateTrack(currentTrack) {
 
     const response = await fetch(
@@ -91,7 +95,7 @@ export default function Player({ playlist, setPlaylist, url, setUrl, playerHidde
                     setPlaying(true)
                 }}}
             />
-            <button hidden={playerHidden} id="playingD"
+            <button id="playingD" hidden={playerHidden}
                 onClick={() => {
                     setPlaying(!playing) ,console.log("play");
                 }}

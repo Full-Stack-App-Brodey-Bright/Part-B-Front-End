@@ -176,8 +176,9 @@
   border-style: solid;
   border-radius: 25px;
   margin-left: 22vw;
-  margin-right: 2vw;
   padding: 10px;
+  width: 68vw;
+  height: fit-content;
 }
 
 .playlistTrack:hover {
@@ -387,10 +388,12 @@ input {
 
 .dashboardMain {
   display: flex;
+  position: relative;
   flex-direction: column;
   margin-left: 21vw;
   margin-top: 1vw;
   width: 80vw;
+  height: 84vh;
 }
 
 .dashboardMain > .playlistsHolder > .PlaylistContainer > .PlaylistDash {
@@ -406,6 +409,7 @@ input {
 
 .dashboardMain > .playlistsHolder > .PlaylistContainer {
   display: flex;
+  align-items: center;
   flex-wrap: nowrap;
   width: 79vw;
   overflow-x: scroll;
@@ -429,5 +433,46 @@ input {
   border-radius: 4px;
   background-color: #f1f1f1;
 }
+
+.addToPlaylistButton {
+  display: flex;
+  height: 2vw;
+  padding: 10px;
+  font-size: 1vw;
+  align-items: center;
+  border-radius: 25px;
+  z-index: 4;
+  height: 4.5vw;
+}
+
+.addToPlaylistButton:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.trackAndButton {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2vw;
+}
+
+.testing {
+  overflow-y: scroll;
+}
+
+.testing > .trackAndButton > .playlistTrack{
+  margin-left: 0;
+}
+
+.coverer {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  height: 10vh;
+  width: 100vw;
+  background-color: rgb(255, 255, 255);
+}
+
+
 
 

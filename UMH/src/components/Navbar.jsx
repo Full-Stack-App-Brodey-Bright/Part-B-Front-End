@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Navbar({setSearchType, setSearchQuery}) {
+export default function Navbar({setSearchType, setSearchQuery, notDashboard}) {
 
     async function searchRequest(e){
         e.preventDefault()
@@ -38,7 +38,11 @@ export default function Navbar({setSearchType, setSearchQuery}) {
                         <option value="Artists">Artists</option>
                     </select>
                 </div>
-                <div className="searchBarHolder">
+                <div className="searchBarHolder" onClick={() => {
+                    if (notDashboard) {
+                        location.href = '/dashboard'
+                    }
+                }}>
                     <input
                         id="searchBar"
                         type="text"

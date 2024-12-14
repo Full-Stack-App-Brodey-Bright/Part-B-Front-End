@@ -90,6 +90,9 @@ export default function SignUp() {
                     ></img>
                 </section>
             </div>
+            <div className="coverer">
+
+</div>
         </>
     );
 }

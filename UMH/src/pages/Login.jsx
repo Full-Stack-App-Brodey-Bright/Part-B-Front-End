@@ -80,6 +80,9 @@ export default function Login() {
                                 hidden={spinnerHidden}
                             ></img>
                 </section>
+                <div className="coverer">
+
+                </div>
             </div>
         </>
     );
