@@ -37,7 +37,7 @@ export default function Connect() {
                 {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ya29.a0ARW5m74bm4hQplDg2E9m89jvx9xM0RaS_6hTdcIhOgIsN_1HX215Hw8Zq28H6xSTirlq4quY1waPH8bu18OHJ0h2B8Y8ItSAmAwjX1tlRXO22d6POk_97UMTLrBHe6dNAnby6l1ipMdBJWHOruKJlYmDUndVUmVodPcaCgYKAX0SARESFQHGX2MiTZ2muHHvQUSuHxPYUEVzuw0170`,
+                        Authorization: `Bearer ${Cookies.get('YtToken')}`,
                     },
                 }
             );
@@ -50,7 +50,7 @@ export default function Connect() {
                     {
                         method: "GET",
                         headers: {
-                            Authorization: `Bearer ya29.a0ARW5m74bm4hQplDg2E9m89jvx9xM0RaS_6hTdcIhOgIsN_1HX215Hw8Zq28H6xSTirlq4quY1waPH8bu18OHJ0h2B8Y8ItSAmAwjX1tlRXO22d6POk_97UMTLrBHe6dNAnby6l1ipMdBJWHOruKJlYmDUndVUmVodPcaCgYKAX0SARESFQHGX2MiTZ2muHHvQUSuHxPYUEVzuw0170`,
+                            Authorization: `Bearer ${Cookies.get('YtToken')}`,
                         },
                     }
                 );
