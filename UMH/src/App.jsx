@@ -15,7 +15,7 @@ import Player from "./components/Player";
 function App() {
     useEffect(() => {
         console.log(Cookies.get("token"));
-    });
+    },[]);
 
     const [playlist, setPlaylist] = useState([]);
     const [url, setUrl] = useState("");

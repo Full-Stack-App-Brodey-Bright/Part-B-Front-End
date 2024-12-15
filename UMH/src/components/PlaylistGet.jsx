@@ -20,7 +20,6 @@ const [playlists, setPlaylists] = useState([]);
         ).then(setSpinnerHidden(false));
         const objResponse = await response.json();
         setSpinnerHidden(true)
-        console.log(objResponse.playlists);
         setPlaylists(await objResponse.playlists);
     }
     useEffect(() => {
@@ -30,7 +29,7 @@ const [playlists, setPlaylists] = useState([]);
         <div className="playlistOptionContainer">
         <img className="spinner" src={sp} hidden={spinnerHidden}></img>
             {playlists.map((playlist) => {
-            return <ChoosePlaylist title={playlist.title} creator={playlist.creator} id={playlist._id} tracks={playlist.tracks} trackTitle={title} trackArtist={artist} trackUrl={trackUrl}/>
+            return <ChoosePlaylist title={playlist.title} creator={playlist.creator} id={playlist._id} key={playlist._id} tracks={playlist.tracks} trackTitle={title} trackArtist={artist} trackUrl={trackUrl}/>
             })}
         </div>
     )

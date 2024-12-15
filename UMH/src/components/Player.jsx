@@ -27,6 +27,7 @@ export async function updateTrack(currentTrack) {
     // return await response.queue.currentTrack
 }
 export async function queueCreate(playlist) {
+    if (window.playlist){
     const response = await fetch(
         "https://part-b-server.onrender.com/api/queue",
         {
@@ -42,6 +43,7 @@ export async function queueCreate(playlist) {
     urlGlobal = await objResponse.queue.currentTrack.url;
     currentTrack = await objResponse.queue.currentTrack
     // return await response.queue.currentTrack
+}
 }
 export async function queueNext(playlist) {
     const response = await fetch(
@@ -65,7 +67,9 @@ export default function Player({ playlist, setPlaylist, url, setUrl, playerHidde
     const [playing, setPlaying] = React.useState(false);
     const [canEnd, setCanEnd] = React.useState(false);
     var playerUrl = `https://www.youtube.com/watch?v=${url}`;
-    setUrl(urlGlobal)
+    useEffect(() => {
+        setUrl(urlGlobal)
+    },[])
     useEffect(() => {
         setPlaying(true)
     },[urlGlobal])

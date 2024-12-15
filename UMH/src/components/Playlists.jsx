@@ -39,6 +39,7 @@ export default function Playlists({all, searchQuery}) {
                         creator={playlist.username}
                         tracks={playlist.tracks}
                         id={playlist._id}
+                        key={playlist._id}
                     />
                 ))}
             </div>

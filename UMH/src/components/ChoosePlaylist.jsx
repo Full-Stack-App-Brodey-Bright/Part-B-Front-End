@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import AddSong from "./AddSong";
+import addSongRequest from "./AddSong";
 
 // individual playlist boxes when displaying multiple playlists
 export default function ChoosePlaylist({title, tracks, trackTitle, trackArtist, trackUrl, id}) {
 
     function click() {
-        AddSong(
+        addSongRequest(
             tracks,
             trackTitle,
             trackArtist,

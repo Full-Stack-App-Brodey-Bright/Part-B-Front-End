@@ -9,7 +9,7 @@ export default function Library() {
         <div hidden={hidden}>
             <CreatePlaylist/>
         </div>
-        <h1>Library</h1>
+        <h1 className="LibraryTitle">Library</h1>
         <div
             className="PlaylistDash"
             onClick={() => {

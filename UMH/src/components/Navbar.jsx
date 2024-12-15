@@ -30,9 +30,9 @@ export default function Navbar({setSearchType, setSearchQuery, notDashboard}) {
             </div>
             <form onSubmit={searchRequest}>
                 <div className="searchTypeMenu">
-                    <label for="searchType">Searching for: </label>
+                    <label htmlFor="searchType">Searching for: </label>
                     <select name="searchType" id="searchType">
-                        <option value="Playlists" selected>Playlists</option>
+                        <option value="Playlists" defaultChecked>Playlists</option>
                         <option value="Tracks">Tracks</option>
                         <option value="Users">Users</option>
                         <option value="Artists">Artists</option>

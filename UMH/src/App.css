@@ -505,6 +505,22 @@ input {
   overflow-y: scroll;
 }
 
+.scroll {
+  margin-bottom: 500px;
+}
+
+.LibraryTitle {
+  margin-top: 10px;
+}
+
+.deletePlaylistButton {
+  right: 80px;
+  position: absolute;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 
 
 

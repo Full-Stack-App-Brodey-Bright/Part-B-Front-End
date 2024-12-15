@@ -32,6 +32,7 @@ export default class PlaylistDetails extends React.Component {
                             title={track.title}
                             artist={track.artist}
                             url={track.url}
+                            key={track._id}
                         />
                     ))}
                 </div>

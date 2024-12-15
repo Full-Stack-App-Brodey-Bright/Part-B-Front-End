@@ -2,8 +2,7 @@ import Cookies from "js-cookie";
 import Background from "./Header";
 import React, { useEffect, useState } from "react";
 
-export default function AddSong( tracks, title, artist, url, id ) {
-    async function addSongRequest() {
+    export default async function addSongRequest( tracks, title, artist, url, id ) {
         let newTracks = await tracks
         newTracks.forEach(element => {
             if (element._id) {
@@ -35,7 +34,6 @@ export default function AddSong( tracks, title, artist, url, id ) {
             location.href = `/playlist/${id}`
         }
     }
-    addSongRequest()
     // return (
     //     <div>
     //         <div className="centererAddSong">
@@ -79,4 +77,4 @@ export default function AddSong( tracks, title, artist, url, id ) {
     //         </div>
     //     </div>
     // );
-}
+
