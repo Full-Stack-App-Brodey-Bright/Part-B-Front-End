@@ -4,6 +4,23 @@ import Cookies from "js-cookie";
 
 export default function Connect() {
     let disabled = Cookies.get("YTConnected?");
+
+    async function getYTPlaylists() {
+        if (Cookies.get("YTConnected") == true) {
+            let response = await fetch(
+                `https://www.googleapis.com/youtube/v3/playlists?mine=true&part=snippet&maxResults=50`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${Cookies.get("YtToken")}`,
+                    },
+                }
+            );
+            let ObjResponse = await response.json()
+            console.log(await ObjResponse.items)
+        }
+    }
     return (
         <div>
             <Header />
@@ -22,6 +39,9 @@ export default function Connect() {
                         }}
                     >
                         Youtube
+                    </button>
+                    <button onClick={getYTPlaylists}>
+                        getytplaylists
                     </button>
                     <button
                         onClick={() => {
