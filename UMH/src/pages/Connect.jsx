@@ -10,7 +10,6 @@ export default function Connect() {
             <div className="centerer">
                 <div className="ConnectBox">
                     <button
-                        disabled={disabled}
                         className="YoutubeButton"
                         onClick={() => {
                             location.href = `${
