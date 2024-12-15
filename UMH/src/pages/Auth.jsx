@@ -24,7 +24,7 @@ export default async function Auth() {
     Cookies.set('YTConnected', null)
 
     if (response.status == 200) {
-        Cookies.set('YTConnected?', true)
+        Cookies.set('YTConnected', true)
         location.href = '/connect'
     }
 

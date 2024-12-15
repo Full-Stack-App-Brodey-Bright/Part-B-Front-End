@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Cookies from "js-cookie";
 
 export default function Connect() {
-    let disabled = Cookies.get("YTConnected?");
+    let disabled = Cookies.get("YTConnected");
 
     async function getYTPlaylists() {
         console.log(Cookies.get('YTConnected'))
