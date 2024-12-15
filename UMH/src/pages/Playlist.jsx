@@ -115,7 +115,6 @@ export default function Playlist({
                         key={details._id}
                     />
                 ))}
-                {checkIfOwner()}
             </div>
         </div>
     );
