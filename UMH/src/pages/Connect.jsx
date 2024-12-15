@@ -6,13 +6,13 @@ export default function Connect() {
     let disabled = Cookies.get("YTConnected?");
 
     async function getYTPlaylists() {
+        console.log(Cookies.get('YTConnected'))
         if (Cookies.get("YTConnected") == true) {
             let response = await fetch(
                 `https://www.googleapis.com/youtube/v3/playlists?mine=true&part=snippet&maxResults=50`,
                 {
                     method: "GET",
                     headers: {
-                        "Content-Type": "application/json",
                         Authorization: `Bearer ${Cookies.get("YtToken")}`,
                     },
                 }
