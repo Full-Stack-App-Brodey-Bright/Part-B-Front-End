@@ -5,16 +5,17 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 let urlGlobal = "";
 let currentTrack = {};
+let previousTrack = {};
 export async function playYtSearchTrack(url) {
     urlGlobal = url;
 }
 
-export async function updateTrack(currentTrack) {
+export async function updateTrack(Track) {
     const response = await fetch(
         "https://part-b-server.onrender.com/api/queue/state",
         {
             method: "PATCH",
-            body: JSON.stringify({ currentTrack: currentTrack }),
+            body: JSON.stringify({ currentTrack: Track }),
             headers: {
                 Authorization: `Bearer ${Cookies.get("token")}`,
                 "Content-Type": "application/json",
@@ -23,6 +24,7 @@ export async function updateTrack(currentTrack) {
     );
     let objResponse = await response.json();
     urlGlobal = await objResponse.queue.currentTrack.url;
+    previousTrack = currentTrack
     currentTrack = await objResponse.queue.currentTrack;
     // return await response.queue.currentTrack
 }
@@ -62,6 +64,8 @@ export async function queueNext(playlist) {
     let objResponse = await response.json();
     urlGlobal = await objResponse.nextTrack.url;
     console.log(await objResponse);
+    previousTrack = currentTrack
+    console.log(previousTrack)
     currentTrack = await objResponse.nextTrack;
     // return await response.queue.currentTrack
 }
@@ -87,9 +91,8 @@ export default function Player({
     useEffect(() => {
         setPlaying(true);
     }, [urlGlobal]);
-    let playingD = document.getElementById("playingD");
+    let playButton = document.getElementById("playButton");
     let playerContainer = document.getElementsByClassName("playerContainer");
-    console.log(url)
 
     return (
         <div className="playerContainer">
@@ -116,10 +119,10 @@ export default function Player({
                     setSliderPlayed(progress.playedSeconds);
                 }}
                 onPlay={async () => {
-                    await setCanEnd(true), (playingD.textContent = "Pause");
+                    await setCanEnd(true), (playButton.textContent = "Pause");
                 }}
                 onPause={() => {
-                    playingD.textContent = "Play";
+                    playButton.textContent = "Play";
                 }}
                 onEnded={async () => {
                     if (playing && canEnd) {
@@ -130,15 +133,31 @@ export default function Player({
                     }
                 }}
             />
-            <button
-                id="playingD"
-                hidden={playerHidden}
-                onClick={() => {
-                    setPlaying(!playing), console.log("play");
-                }}
-            >
-                Player
-            </button>
+            <div className="playerButtons">
+                <button className="playerButton">Mode</button>
+                <div className="playerButtonsMain">
+                    <button className="playerButton">Back</button>
+                    <button
+                        id="playButton"
+                        className="playerButton"
+                        hidden={playerHidden}
+                        onClick={() => {
+                            setPlaying(!playing), console.log("play");
+                        }}
+                    >
+                        Player
+                    </button>
+                    <button
+                        className="playerButton"
+                        onClick={async () => {
+                            await queueNext(playlist);
+                            setUrl(await urlGlobal);
+                        }}
+                    >
+                        Forward
+                    </button>
+                </div>
+            </div>
             <div className="durationBar" hidden={!url}>
                 <Slider
                     step={0.5}

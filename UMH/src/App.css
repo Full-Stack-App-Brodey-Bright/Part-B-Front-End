@@ -196,9 +196,23 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#playingD {
-  height: 3vw;
-  width: 3vw;
+.playerButtons {
+  display: flex;
+  width: 80vw;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.playerButtonsMain {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 20vw;
+}
+
+.playerButton {
+  height: 5vh;
+  width: 5vh;
+  margin-left: 2vh;
   background-color: blue;
   color: aliceblue;
 }
