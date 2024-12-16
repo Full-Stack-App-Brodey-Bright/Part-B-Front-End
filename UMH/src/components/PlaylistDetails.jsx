@@ -1,5 +1,6 @@
 import React, {componentDidUpdate, useState } from "react";
 import Track from "./Track";
+import { queueNext } from "./Player";
 let arr = []
 let trackElements = document.getElementsByClassName('playlistTrack')
 // playlist selected to show tracks and other data
@@ -13,7 +14,13 @@ export default class PlaylistDetails extends React.Component {
             for (const element of trackElements) {
                 element.style.backgroundColor = 'grey'
             }
-            trackElements[newIndex].style.backgroundColor = 'green'
+            try {
+                trackElements[newIndex].style.backgroundColor = 'green'
+            } catch (error) {
+                queueNext(this.props.playlist)
+            }
+            
+        
         }
     }
     render() {

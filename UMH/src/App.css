@@ -521,6 +521,23 @@ input {
   padding-bottom: 20px;
 }
 
+body .rc-slider-rail {
+  background: rgb(0, 149, 255);
+}
+
+body .rc-slider {
+  width: 60vw;
+  padding: 2vh;
+}
+
+body .rc-slider-handle-dragging {
+  box-shadow: none;
+}
+
+body .rc-slider:hover {
+  cursor: pointer;
+}
+
 
 
 

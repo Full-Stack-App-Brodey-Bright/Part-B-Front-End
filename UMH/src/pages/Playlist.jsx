@@ -60,7 +60,7 @@ export default function Playlist({
             console.log(isOwner)
         }
         wait();
-    }, [playlist]);
+    }, []);
 
     async function deletePlaylist() {
         let response = await fetch(`https://part-b-server.onrender.com/api/playlists/${window.location.pathname.split("/")[2]}`, 
@@ -112,6 +112,7 @@ export default function Playlist({
                         tracks={details.tracks}
                         id={details._id}
                         url={url}
+                        playlist={playlist}
                         key={details._id}
                     />
                 ))}
