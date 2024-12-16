@@ -5,9 +5,23 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 let urlGlobal = "";
 let currentTrack = {};
-let previousTrack = {};
+let previousTrack = [];
+let modes = ['normal', 'shuffle', 'repeat', 'repeat_one']
+let currentMode = 0
 export async function playYtSearchTrack(url) {
     urlGlobal = url;
+}
+
+async function changePlaybackMode(playbackMode) {
+    await fetch("https://part-b-server.onrender.com/api/queue/mode",
+        {
+            method: "PATCH",
+            body: JSON.stringify({ playbackMode: playbackMode }),
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`,
+                "Content-Type": "application/json",
+            },
+        })
 }
 
 export async function updateTrack(Track) {
@@ -24,7 +38,8 @@ export async function updateTrack(Track) {
     );
     let objResponse = await response.json();
     urlGlobal = await objResponse.queue.currentTrack.url;
-    previousTrack = currentTrack
+    previousTrack.push(currentTrack)
+    console.log(previousTrack)
     currentTrack = await objResponse.queue.currentTrack;
     // return await response.queue.currentTrack
 }
@@ -64,7 +79,7 @@ export async function queueNext(playlist) {
     let objResponse = await response.json();
     urlGlobal = await objResponse.nextTrack.url;
     console.log(await objResponse);
-    previousTrack = currentTrack
+    previousTrack.push(currentTrack)
     console.log(previousTrack)
     currentTrack = await objResponse.nextTrack;
     // return await response.queue.currentTrack
@@ -92,7 +107,7 @@ export default function Player({
         setPlaying(true);
     }, [urlGlobal]);
     let playButton = document.getElementById("playButton");
-    let playerContainer = document.getElementsByClassName("playerContainer");
+    let modeButton = document.getElementById("modeButton")
 
     return (
         <div className="playerContainer">
@@ -134,9 +149,23 @@ export default function Player({
                 }}
             />
             <div className="playerButtons">
-                <button className="playerButton">Mode</button>
+                <button className="playerButton" id="modeButton" onClick={() => {
+                    modes.length - 1 == currentMode ? currentMode = 0 : currentMode += 1
+                    changePlaybackMode(modes[currentMode])
+                    modeButton.textContent = modes[currentMode]
+                    console.log(currentMode)
+                }}>normal</button>
                 <div className="playerButtonsMain">
-                    <button className="playerButton">Back</button>
+                    <button className="playerButton" onClick={() => {
+                        try{
+                        previousTrack.length > 0 ? urlGlobal = previousTrack[previousTrack.length - 1].url : console.log('no more previous tracks')
+                        currentTrack = previousTrack[previousTrack.length - 1]
+                        previousTrack.pop()
+                        setUrl(urlGlobal)
+                        } catch (error) {
+
+                        }
+                    }}>Back</button>
                     <button
                         id="playButton"
                         className="playerButton"
