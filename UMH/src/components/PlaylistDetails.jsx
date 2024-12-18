@@ -41,6 +41,7 @@ export default class PlaylistDetails extends React.Component {
                             url={track.url}
                             playlistId={this.props.id}
                             tracks={this.props.tracks}
+                            isOwner={this.props.isOwner}
                             key={track._id}
                         />
                     ))}

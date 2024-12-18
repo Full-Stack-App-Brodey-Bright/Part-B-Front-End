@@ -113,6 +113,7 @@ export default function Playlist({
                         id={details._id}
                         url={url}
                         playlist={playlist}
+                        isOwner={isOwner}
                         key={details._id}
                     />
                 ))}

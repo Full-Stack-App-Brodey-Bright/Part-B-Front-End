@@ -12,6 +12,7 @@ export default function Track({
     trackUrl,
     playlistId,
     tracks,
+    isOwner
 }) {
     const [hidePlaylists, setHidePlaylists] = useState(true);
 
@@ -34,7 +35,7 @@ export default function Track({
                     <h1>{title}</h1>
                     <h4>{artist}</h4>
                 </div>
-                <button onClick={click}>Remove</button>
+                <button hidden={!isOwner} onClick={click}>Remove</button>
             </div>
             <button
                 className="addToPlaylistButton"

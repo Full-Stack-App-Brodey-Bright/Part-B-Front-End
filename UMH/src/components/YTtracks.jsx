@@ -35,7 +35,10 @@ export default function YTtracks ({searchType, searchQuery, setUrl}) {
                     title={item.snippet.title}
                     artist={item.snippet.channelTitle}
                     trackUrl={item.id.videoId}
-                    setUrl={setUrl}/>
+                    setUrl={setUrl}
+                    isOwner={false}
+                    key={item.id.videoId}
+                    />
                 })}
             </div>
         );
