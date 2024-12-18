@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Playlists from "./components/Playlists";
 import Playlist from "./pages/Playlist";
 import Player from "./components/Player";
+import Profile from "./pages/Profile";
 
 function App() {
     useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
                             />
                         }
                     />
+                    <Route path="/profile/:id" element={<Profile/>}/>
                 </Routes>
             </BrowserRouter>
             <Player

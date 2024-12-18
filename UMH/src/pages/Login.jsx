@@ -28,6 +28,7 @@ export default function Login() {
 
         Cookies.set("token", await realResponse.token);
         Cookies.set("username", await realResponse.username);
+        Cookies.set("userId", await realResponse.id)
         setSpinnerHidden(true);
 
         ErrorDisplay.textContent = realResponse.message;
