@@ -1,24 +1,22 @@
 import Cookies from "js-cookie";
 
-    export default async function addSongRequest( tracks, title, artist, url, id ) {
-        let newTracks = await tracks
-        newTracks.forEach(element => {
+    export default async function removeSongRequest( tracks, url, id, setUrl ) {
+        let removedTracks = await tracks
+        removedTracks.forEach(element => {
             if (element._id) {
                 delete element._id
             }
         });
-        let data = {
-            tracks: await newTracks.concat({
-                title: title,
-                artist: artist,
-                url: url
-            
-        })};
+        
+        const index = removedTracks.map(e => e.url).indexOf(url)
+        console.log(index)
+        removedTracks.splice(index, 1)
+        console.log(await removedTracks)
 
         let response = await fetch(`https://part-b-server.onrender.com/api/playlists/${id}`,
             {
                 method: "PUT",
-                body: JSON.stringify( await data ),
+                body: JSON.stringify({ tracks: await removedTracks }),
                 headers: {
                     Authorization: `Bearer ${Cookies.get("token")}`,
                     "Content-Type": "application/json",
@@ -28,9 +26,10 @@ import Cookies from "js-cookie";
 
         const objResponse = await response.json()
         console.log(await objResponse)
-        if (response.status == 200) {
-            location.href = `/playlist/${id}`
-        }
+        setUrl('')
+        // if (response.status == 200) {
+        //     location.href = `/playlist/${id}`
+        // }
     }
     // return (
     //     <div>
