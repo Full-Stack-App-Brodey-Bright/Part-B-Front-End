@@ -651,6 +651,74 @@ body .rc-slider:hover {
   margin-left: 1vw;
 }
 
+.userBox {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 60, 255);
+  color: aliceblue;
+  width: 10vw;
+  height: 10vw;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  border-color: black;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.userBox:hover {
+  cursor: pointer;
+  border-color: aliceblue;
+}
+
+.notificationsTab {
+  width: 3vw;
+  height: 3vw;
+  margin-right: 3vw;
+  font-size: 2vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.notificationContainer {
+  margin-left: 22vw;
+  margin-top: 2vw;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 500px;
+}
+
+.notificationOption {
+  display: flex;
+  background-color: gray;
+  width: 70vw;
+  margin-top: 1vw;
+  border-radius: 25px;
+  border-color: black;
+  border-style: solid;
+  border-width: 5px;
+  height: 10vh;
+  align-items: center;
+  font-size: 1vw;
+}
+
+.notificationOptionInfo {
+  display: flex;
+  width: 65vw;
+  justify-content: space-between;
+  margin-left: 1vw;
+}
+
+.notificationOption:hover {
+  border-color: aqua;
+  cursor: pointer;
+}
+
 
 
 

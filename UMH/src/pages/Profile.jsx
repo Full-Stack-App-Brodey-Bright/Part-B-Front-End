@@ -74,6 +74,20 @@ export default function Profile() {
         setSpinnerHidden(true);
         location.href = location.href;
     }
+
+    async function getFollowing() {
+        let response = await fetch(`https://part-b-server.onrender.com/api/user/${profileId}/following`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        })
+        console.log(await response.json())
+    }
+
+    async function getFollowers() {
+        
+    }
     // if playlists exist stop sending requests
     useEffect(() => {
         getUser();
@@ -100,8 +114,8 @@ export default function Profile() {
                             <button className="youtubeButton">Youtube</button>
                         </div>
                         <div className="profileInfo">
-                            <h3>{followers.length} Followers</h3>
-                            <h3>{following.length} Following</h3>
+                            <h3 onClick={getFollowers}>{followers.length} Followers</h3>
+                            <h3 onClick={getFollowing}>{following.length} Following</h3>
                             <h3>{playlistCount} Playlists</h3>
                         </div>
                     </div>

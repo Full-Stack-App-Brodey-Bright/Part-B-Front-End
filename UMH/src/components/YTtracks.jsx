@@ -3,6 +3,7 @@ import { updateTrack } from "./Player";
 import Track from "./Track";
 
 export default function YTtracks ({searchType, searchQuery, setUrl}) {
+    const [hideResults, setHideResults] = useState(true)
     const [ytResponse, setYtResponse] = useState({items: []})
     async function getYTSearch() {
         let response = await fetch(
@@ -25,10 +26,13 @@ export default function YTtracks ({searchType, searchQuery, setUrl}) {
     useEffect(() => {
         if (searchType == 'Tracks') {
             getYTSearch()
+            setHideResults(false)
+        } else {
+            setHideResults(true)
         }
-    }, [searchQuery]);
+    }, [searchType, searchQuery]);
     return (
-            <div className="testing">
+            <div className="testing" hidden={hideResults}>
                 {
                    ytResponse.items.map((item) => {
                     return <Track

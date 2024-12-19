@@ -12,6 +12,7 @@ import Playlists from "./components/Playlists";
 import Playlist from "./pages/Playlist";
 import Player from "./components/Player";
 import Profile from "./pages/Profile";
+import Notifications from "./pages/Notifications";
 
 function App() {
     useEffect(() => {
@@ -60,6 +61,7 @@ function App() {
                         }
                     />
                     <Route path="/profile/:id" element={<Profile/>}/>
+                    <Route path="/notifications" element={<Notifications/>}/>
                 </Routes>
             </BrowserRouter>
             <Player
