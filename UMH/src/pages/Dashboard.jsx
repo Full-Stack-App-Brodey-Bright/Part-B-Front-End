@@ -51,7 +51,7 @@ export default function Dashboard({
             <div className="dashboard">
                 <Library />
                 <div className="dashboardMain">
-                    <h1>Welcome {Cookies.get("username")}!</h1>
+                    <h1 className="dashTitle">Welcome {Cookies.get("username")}!</h1>
                     <h2 className="dashSubtitle">
                         {searchQuery || "All Playlists"}
                     </h2>

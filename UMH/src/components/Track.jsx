@@ -40,7 +40,7 @@ export default function Track({
             <button
                 className="addToPlaylistButton"
                 onClick={() => {
-                    setHidePlaylists(false);
+                    setHidePlaylists(!hidePlaylists);
                 }}
             >
                 Add To Playlist

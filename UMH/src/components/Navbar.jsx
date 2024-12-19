@@ -54,7 +54,7 @@ export default function Navbar({
                     UMH
                 </h1>
             </div>
-            <form onSubmit={searchRequest}>
+            <form onSubmit={searchRequest} className="searchComponent">
                 <div className="searchTypeMenu">
                     <label htmlFor="searchType">Searching for: </label>
                     <select name="searchType" id="searchType">
