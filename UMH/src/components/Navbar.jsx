@@ -44,7 +44,6 @@ export default function Navbar({
             }
         );
         let objResponse = await response.json();
-        console.log(await objResponse.notifications.length);
         setNotificationCount(await objResponse.notifications.length);
     }
 

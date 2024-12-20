@@ -44,7 +44,6 @@ export async function updateTrack(Track) {
 }
 export async function queueCreate(playlist) {
     if (typeof playlist != "undefined") {
-        console.log("creating queue");
         try {
             const response = await fetch(
                 "https://part-b-server.onrender.com/api/queue",
@@ -104,7 +103,7 @@ export default function Player({
     }, []);
     useEffect(() => {
         setPlaying(true);
-    }, [urlGlobal, currentTrack]);
+    }, [url, currentTrack]);
     let playButton = document.getElementById("playButton");
     let modeButton = document.getElementById("modeButton");
 

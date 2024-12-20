@@ -60,7 +60,6 @@ export default function Playlist({
             if (playlist.length > 0) {
                 setIsOwner((await playlist[0].username) == Cookies.get("username"));
             }
-            console.log(isOwner)
         }
         wait();
     }, [playlist]);

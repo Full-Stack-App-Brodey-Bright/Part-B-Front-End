@@ -106,7 +106,7 @@ export default function Connect() {
                     <button
                         onClick={() => {
                             location.href = "/dashboard";
-                        }}
+                        }} className="homeButton"
                     >
                         Skip
                     </button>

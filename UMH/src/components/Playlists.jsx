@@ -20,7 +20,6 @@ export default function Playlists({all, searchQuery}) {
         ).then(setSpinnerHidden(false));
         const objResponse = await response.json();
         setSpinnerHidden(true)
-        console.log(objResponse);
         setPlaylists(objResponse.playlists);
     }
     // if playlists exist stop sending requests

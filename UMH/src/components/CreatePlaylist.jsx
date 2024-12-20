@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 export default function CreatePlaylist() {
     async function CreatePlaylistRequest() {
-        console.log(document.getElementById("isPublicInput").checked)
         let data = {
             title: document.getElementById("titleInputP").value,
             description: document.getElementById("descriptionInput").value,
