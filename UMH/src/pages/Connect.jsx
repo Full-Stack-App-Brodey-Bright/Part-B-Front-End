@@ -1,13 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../components/Header";
 import Cookies from "js-cookie";
 
 export default function Connect() {
     console.log(Cookies.get("YTConnected"))
 
-        if (Cookies.get("YTConnected") == true) {
-            getYTPlaylists()
-        }
+        useEffect(() => {
+            console.log('effect')
+            if (Cookies.get("YTConnected") == true && Cookies.get("YTGotten") !== true) {
+                getYTPlaylists()
+            }
+        },[])
         async function CreatePlaylistRequest(title, description, tracks) {
             let data = {
                     title: title,
@@ -34,7 +37,7 @@ export default function Connect() {
         }
     async function getYTPlaylists() {
         console.log(Cookies.get('YtToken'))
-        
+        console.log('test')
         if (Cookies.get('YtToken')) {
             let response = await fetch(
                 `https://www.googleapis.com/youtube/v3/playlists?mine=true&part=snippet&maxResults=50`,
@@ -72,6 +75,7 @@ export default function Connect() {
                 console.log(await YtTracks)
                 CreatePlaylistRequest(await item.snippet.title, await item.snippet.description, await YtTracks)
             });
+            Cookies.set('YTGotten', true)
             location.href = '/dashboard'
         }
     }
