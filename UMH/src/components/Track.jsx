@@ -27,7 +27,7 @@ export default function Track({
                     if (trackUrl) {
                         await playYtSearchTrack(trackUrl), setUrl(trackUrl);
                     } else {
-                        await updateTrack(track), setUrl(track.url);
+                        await updateTrack(track), await setUrl(track.url);
                     }
                 }}
             >

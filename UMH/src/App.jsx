@@ -13,11 +13,13 @@ import Playlist from "./pages/Playlist";
 import Player from "./components/Player";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
+import LibraryMobile from "./pages/LibraryMobile";
+import SearchMobile from "./pages/SearchMobile";
 
 function App() {
     useEffect(() => {
         console.log(Cookies.get("token"));
-    },[]);
+    }, []);
 
     const [playlist, setPlaylist] = useState([]);
     const [url, setUrl] = useState("");
@@ -60,8 +62,22 @@ function App() {
                             />
                         }
                     />
-                    <Route path="/profile/:id" element={<Profile/>}/>
-                    <Route path="/notifications" element={<Notifications/>}/>
+                    <Route path="/profile/:id" element={<Profile />} />
+                    <Route path="/notifications" element={<Notifications />} />
+                    <Route path="/library" element={<LibraryMobile />} />
+                    <Route
+                        path="/search"
+                        element={
+                            <SearchMobile
+                                setPlayerHidden={setPlayerHidden}
+                                setUrl={setUrl}
+                                searchType={searchType}
+                                searchQuery={searchQuery}
+                                setSearchQuery={setSearchQuery}
+                                setSearchType={setSearchType}
+                            />
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
             <Player

@@ -1,9 +1,21 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Playlists from "./Playlists";
 import CreatePlaylist from "./CreatePlaylist";
 
 export default function Library() {
     const [hidden, setHidden] = useState(true)
+
+    async function libraryWait() {
+        let lib = await document.getElementsByClassName('Library')[0]
+        if (location.href == `${import.meta.env.VITE_URL}/library`) {
+            await lib
+            lib.style.display = 'flex'
+        }
+    }
+
+    useEffect(() => {
+        libraryWait()
+    }, [])
     return (
         <div className="Library">
         <div hidden={hidden}>
@@ -16,7 +28,7 @@ export default function Library() {
                 ;
             }}
         >
-            <div onClick={() => {setHidden(false)}} style={{display : 'flex', flexDirection : 'row', justifyContent : 'space-between', width : '19vw'}} className="PlaylistDashInfo">
+            <div onClick={() => {setHidden(false)}} style={{display : 'flex', flexDirection : 'row', justifyContent : 'space-between', width : '95vw'}} className="PlaylistDashInfo">
                 <h1>Create New Playlist</h1>
                 <h1 >+</h1>
             </div>

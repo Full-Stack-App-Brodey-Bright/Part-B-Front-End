@@ -104,7 +104,7 @@ export default function Player({
     }, []);
     useEffect(() => {
         setPlaying(true);
-    }, [urlGlobal]);
+    }, [urlGlobal, currentTrack]);
     let playButton = document.getElementById("playButton");
     let modeButton = document.getElementById("modeButton");
 
@@ -112,8 +112,8 @@ export default function Player({
         <div className="playerContainer">
             <div className="mobileNav">
                 <button className="mobileNavButton" onClick={() => {location.href = '/dashboard'}}>Home</button>
-                <button className="mobileNavButton">Search</button>
-                <button className="mobileNavButton">Library</button>
+                <button className="mobileNavButton" onClick={() => {location.href = '/search'}}>Search</button>
+                <button className="mobileNavButton" onClick={() => {location.href = '/library'}}>Library</button>
             </div>
             <ReactPlayer
                 url={playerUrl}

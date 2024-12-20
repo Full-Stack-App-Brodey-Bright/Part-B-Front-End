@@ -46,6 +46,9 @@ export default function Playlist({
             }
         );
         const objResponse = await response.json();
+        if (response.status == 500) {
+            location.href = '/login'
+        }
         setPlaylist(await objResponse.playlists);
     }
     useEffect(() => {

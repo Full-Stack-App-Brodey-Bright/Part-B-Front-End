@@ -1,13 +1,29 @@
-import React, {useEffect, useState} from "react";
-import Cookies from 'js-cookie'
-
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export default function Navbar({
     setSearchType,
     setSearchQuery,
     notDashboard,
 }) {
-    const [notificationCount, setNotificationCount] = useState(0)
+    async function searchWait() {
+        let search = await document.getElementsByClassName("searchComponent")[0];
+        let navbar = await document.getElementsByClassName("Navbar")[0];
+        if (location.href == `${import.meta.env.VITE_URL}/search`) {
+            await search;
+            await navbar;
+            search.style.display = "block";
+            navbar.style.height = '25vh'
+            navbar.style.zIndex = '0'
+            navbar.style.alignItems = 'flex-start'
+            navbar.style.marginTop = '2vh'
+        }
+    }
+
+    useEffect(() => {
+        searchWait();
+    }, []);
+    const [notificationCount, setNotificationCount] = useState(0);
     async function searchRequest(e) {
         e.preventDefault();
         let searchType = document.getElementById("searchType").value;
@@ -27,14 +43,14 @@ export default function Navbar({
                 },
             }
         );
-        let objResponse = await response.json()
-        console.log(await objResponse.notifications.length)
-        setNotificationCount(await objResponse.notifications.length)
+        let objResponse = await response.json();
+        console.log(await objResponse.notifications.length);
+        setNotificationCount(await objResponse.notifications.length);
     }
 
     useEffect(() => {
-        getUnreadNotifications()
-    }, [])
+        getUnreadNotifications();
+    }, []);
 
     return (
         <div className="Navbar">
@@ -83,7 +99,14 @@ export default function Navbar({
                 </div>
             </form>
             <div>
-                <button className="notificationsTab" onClick={() => {location.href = '/notifications'}}>{notificationCount}</button>
+                <button
+                    className="notificationsTab"
+                    onClick={() => {
+                        location.href = "/notifications";
+                    }}
+                >
+                    {notificationCount}
+                </button>
             </div>
         </div>
     );
