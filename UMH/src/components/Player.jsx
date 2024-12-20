@@ -120,7 +120,7 @@ export default function Player({
                 ref={playerRef}
                 playing={playing}
                 muted={muted}
-                height="400px"
+                height="0px"
                 onError={async () => {
                     if (playing && canEnd) {
                         console.log(
