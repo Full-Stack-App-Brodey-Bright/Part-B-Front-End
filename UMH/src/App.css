@@ -29,36 +29,50 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 
-}
-.AlreadyAUser p {
-  margin-right: 1vw;
 }
 
 .SignUpForm {
-  padding-top: 10vh;
+  padding-top: 1vh;
+  width: 30vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .FormInput {
-  margin-bottom: 1vw;
-  width: 20vw;
-  height: 2vw;
+  margin-bottom: 1vh;
+  width: 30vh;
+  height: 5vh;
+}
+
+.SignUpForm p {
+  padding-bottom: 1vh;
+}
+
+.AlreadyAUser p {
+  margin-right: 1vw;
+  padding-bottom: 0;
 }
 
 .SignUpBox {
   background-color: rgb(216, 216, 250);
   display: flex;
   justify-content: top;
-  padding-top: 5vh;
-  width: 40vw;
-  height: 60vh;
+  padding-top: 3vh;
+  width: 40vh;
+  height: 40vh;
   position: relative;
   z-index: 1;
   align-items: center;
   flex-direction: column;
+}
+
+.SignUpBox h1 {
+  padding-bottom: 2vh;
 }
 
 .Back {
@@ -66,7 +80,7 @@
   background-color: gray;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   padding-top: 1vh;
   align-items: top;
   width: 100dvw;
@@ -90,7 +104,7 @@
 }
 
 .Title {
-  font-size: 4vw;
+  font-size: 5vh;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin: 0%;
   border: 0;
@@ -108,19 +122,26 @@
 .ConnectBox {
   background-color: rgb(216, 216, 250);
   display: flex;
-  justify-content: top;
-  padding-top: 5vh;
-  width: 40vw;
-  height: 60vh;
+  justify-content: space-evenly;
+  width: 40vh;
+  height: 40vh;
   position: relative;
   z-index: 1;
   align-items: center;
   flex-direction: column;
 }
 
-.YoutubeButton {
+.ConnectBox button {
   margin-bottom: 1vw;
-  width: 20vw;
+  width: 35vh;
+  height: 4vh;
+}
+
+.YoutubeButton {
+  background-color: red;
+  color: aliceblue;
+  margin-bottom: 1vw;
+  width: 35vh;
   height: 4vh;
 }
 
@@ -168,9 +189,11 @@
 }
 
 .spinner {
-  width: 7vw;
+  width: 20vh;
   position: absolute;
-  margin-top: 37vh;
+  top: 50vh;
+  left: 45vw;
+  z-index: 10;
 }
 
 .playlistTrack {
@@ -983,7 +1006,13 @@ body .rc-slider:hover {
 
   .mobileNavButton {
     height: 5vh;
-    width: 5vh;
+    width: 8vh;
+    border-radius: 100px;
+    color: aliceblue;
+    background-color: #000;
+    border-color: aliceblue;
+    border-width: 2px;
+    border-style: outset;
   }
 
   body .rc-slider {
@@ -1048,6 +1077,10 @@ body .rc-slider:hover {
     height: 4vh;
     width: 10vh;
     font-size: 2vh;
+  }
+
+  .coverer {
+    height: 20vh;
   }
 
 }

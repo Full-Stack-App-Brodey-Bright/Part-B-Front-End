@@ -3,7 +3,11 @@ import Header from "../components/Header";
 import Cookies from "js-cookie";
 
 export default function Connect() {
-    let disabled = Cookies.get("YTConnected");
+    console.log(Cookies.get("YTConnected"))
+
+        if (Cookies.get("YTConnected") == true) {
+            getYTPlaylists()
+        }
         async function CreatePlaylistRequest(title, description, tracks) {
             let data = {
                     title: title,
@@ -68,6 +72,7 @@ export default function Connect() {
                 console.log(await YtTracks)
                 CreatePlaylistRequest(await item.snippet.title, await item.snippet.description, await YtTracks)
             });
+            location.href = '/dashboard'
         }
     }
     return (
@@ -87,10 +92,7 @@ export default function Connect() {
                             }/auth`;
                         }}
                     >
-                        Youtube
-                    </button>
-                    <button onClick={getYTPlaylists}>
-                        getytplaylists
+                       Connect to Youtube
                     </button>
                     <button
                         onClick={() => {

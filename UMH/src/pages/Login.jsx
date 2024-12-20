@@ -28,7 +28,7 @@ export default function Login() {
 
         Cookies.set("token", await realResponse.token);
         Cookies.set("username", await realResponse.username);
-        Cookies.set("userId", await realResponse.id)
+        Cookies.set("userId", await realResponse.id);
         setSpinnerHidden(true);
 
         ErrorDisplay.textContent = realResponse.message;
@@ -41,6 +41,7 @@ export default function Login() {
     return (
         <>
             <Header />
+            <img className="spinner" src={sp} hidden={spinnerHidden}></img>
             <div className="centerer">
                 <section className="SignUpBox">
                     <h1>Login</h1>
@@ -56,7 +57,7 @@ export default function Login() {
                         <p>Password</p>
                         <input
                             className="FormInput"
-                            type="text"
+                            type="password"
                             id="passwordInput"
                             name="password"
                             placeholder="Password"
@@ -75,15 +76,8 @@ export default function Login() {
                         </div>
                     </form>
                     <p id="ErrorDisplay"></p>
-                    <img
-                                className="spinner"
-                                src={sp}
-                                hidden={spinnerHidden}
-                            ></img>
                 </section>
-                <div className="coverer">
-
-                </div>
+                <div className="coverer"></div>
             </div>
         </>
     );

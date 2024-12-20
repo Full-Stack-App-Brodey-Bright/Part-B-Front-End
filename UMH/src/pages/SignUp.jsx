@@ -1,8 +1,7 @@
 import Header from "../components/Header";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import sp from "../assets/sp.svg";
-import Cookies from 'js-cookie'
-
+import Cookies from "js-cookie";
 
 export default function SignUp() {
     const [spinnerHidden, setSpinnerHidden] = useState(true);
@@ -10,13 +9,13 @@ export default function SignUp() {
         setSpinnerHidden(false);
         const url = "https://part-b-server.onrender.com/api/auth/register";
         const ErrorDisplay = document.getElementById("ErrorDisplay");
-    
+
         let data = {
             username: document.getElementById("usernameInput").value,
             email: document.getElementById("emailInput").value.toLowerCase(),
             password: document.getElementById("passwordInput").value,
         };
-    
+
         let response = await fetch(url, {
             method: "POST",
             body: JSON.stringify(data),
@@ -24,24 +23,25 @@ export default function SignUp() {
                 "Content-Type": "application/json",
             },
         }).then(setSpinnerHidden(false));
-    
+
         const realResponse = await response.json();
         Cookies.set("token", await realResponse.token);
         Cookies.set("username", await realResponse.username);
         Cookies.set("userId", await realResponse.id);
-    
+
         ErrorDisplay.textContent = realResponse.message;
         setSpinnerHidden(true);
-    
+
         if (response.status == 201) {
             location.href = `/connect`;
         }
-    
+
         console.log(response);
     }
     return (
         <>
             <Header />
+            <img className="spinner" src={sp} hidden={spinnerHidden}></img>
             <div className="centerer">
                 <section className="SignUpBox">
                     <h1>Sign Up</h1>
@@ -65,7 +65,7 @@ export default function SignUp() {
                         <p>Password</p>
                         <input
                             className="FormInput"
-                            type="text"
+                            type="password"
                             id="passwordInput"
                             name="password"
                             placeholder="Password"
@@ -84,16 +84,9 @@ export default function SignUp() {
                         </div>
                     </form>
                     <p id="ErrorDisplay"></p>
-                    <img
-                        className="spinner"
-                        src={sp}
-                        hidden={spinnerHidden}
-                    ></img>
                 </section>
             </div>
-            <div className="coverer">
-
-</div>
+            <div className="coverer"></div>
         </>
     );
 }
