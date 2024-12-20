@@ -37,6 +37,7 @@ export default function Connect() {
             const objResponse = await response.json()
             if (response.status == 201) {
                 console.log('Playlist created')
+                location.href = '/dashboard'
             }
         }
     async function getYTPlaylists() {
@@ -80,7 +81,6 @@ export default function Connect() {
                 CreatePlaylistRequest(await item.snippet.title, await item.snippet.description, await YtTracks)
             });
             Cookies.set('YTGotten', true)
-            location.href = '/dashboard'
         }
     }
     return (
