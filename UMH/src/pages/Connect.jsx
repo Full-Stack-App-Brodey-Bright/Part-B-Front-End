@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 
 export default function Connect() {
     console.log(Cookies.get("YTConnected"))
+    let disabled = Cookies.get('YTConnected') == true
 
         useEffect(() => {
             console.log('effect')
@@ -86,6 +87,7 @@ export default function Connect() {
                 <div className="ConnectBox">
                     <button
                         className="YoutubeButton"
+                        hidden={disabled}
                         onClick={() => {
                             location.href = `${
                                 import.meta.env.VITE_AUTH_URI
