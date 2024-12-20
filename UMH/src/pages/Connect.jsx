@@ -8,7 +8,7 @@ export default function Connect() {
     console.log('is button disabled:' + disabled)
 
         useEffect(() => {
-            console.log('effect')
+            console.log('useffect')
             console.log(Cookies.get("YTConnected") == true)
             console.log(Cookies.get("YTGotten") !== true)
             if (Cookies.get("YTConnected") == true && Cookies.get("YTGotten") !== true) {
