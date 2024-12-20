@@ -29,7 +29,8 @@ export default class PlaylistDetails extends React.Component {
                 <div className="playlistInfo">
                     <h1>{this.props.title}</h1>
                     <h3>{this.props.username}</h3>
-                    <h3>{this.props.description}</h3>
+                    <h4>{this.props.description}</h4>
+                    <h4>{this.props.isPublic.toString()}</h4>
                 </div>
                 <div className="scroll">
                     {arr = this.props.tracks.map((track) => (

@@ -3,16 +3,19 @@ import React, { useState } from "react";
 
 export default function CreatePlaylist() {
     async function CreatePlaylistRequest() {
+        console.log(document.getElementById("isPublicInput").checked)
         let data = {
-                title: document.getElementById("titleInputP").value,
-                description: document.getElementById("descriptionInput").value,
-                isPublic: document.getElementById("isPublicInput").value === 'on' ? true : false,
+            title: document.getElementById("titleInputP").value,
+            description: document.getElementById("descriptionInput").value,
+            isPublic:
+                document.getElementById("isPublicInput").checked
         };
 
-        let response = await fetch(`https://part-b-server.onrender.com/api/playlists/`,
+        let response = await fetch(
+            `https://part-b-server.onrender.com/api/playlists/`,
             {
                 method: "POST",
-                body: JSON.stringify( await data ),
+                body: JSON.stringify(await data),
                 headers: {
                     Authorization: `Bearer ${Cookies.get("token")}`,
                     "Content-Type": "application/json",
@@ -20,10 +23,10 @@ export default function CreatePlaylist() {
             }
         );
 
-        const objResponse = await response.json()
-        console.log(await objResponse)
+        const objResponse = await response.json();
+        console.log(await objResponse);
         if (response.status == 201) {
-            location.href = location.href
+            location.href = location.href;
         }
     }
     return (
@@ -47,18 +50,22 @@ export default function CreatePlaylist() {
                             name="description"
                             placeholder="Description"
                         ></input>
-                        <input
-                            className="createPlaylistInput"
-                            type="checkbox"
-                            id="isPublicInput"
-                            name="isPublic"
-                            defaultChecked
-                        ></input>
-                        <label htmlFor='isPublicInput'>Make Public?</label>
+                        <div className="makePublic">
+                            <input
+                                className="createPlaylistInput"
+                                type="checkbox"
+                                id="isPublicInput"
+                                name="isPublic"
+                                defaultChecked
+                            ></input>
+                            <label htmlFor="isPublicInput">Make Public?</label>
+                        </div>
 
                         <button
                             className="createPlaylistInput"
-                            onClick={() => {CreatePlaylistRequest()}}
+                            onClick={() => {
+                                CreatePlaylistRequest();
+                            }}
                             type="button"
                         >
                             Create Playlist

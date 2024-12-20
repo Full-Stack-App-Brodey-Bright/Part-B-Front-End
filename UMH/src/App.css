@@ -219,6 +219,7 @@
 }
 
 .playlistInfo {
+  width: 50vw;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -299,12 +300,13 @@
 }
 
 .centererAddSong {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 80vh;
-  position: absolute;
+  height: 70vh;
+  width: 100vw;
 }
 
 .Library {
@@ -413,24 +415,51 @@ input {
   background-color: rgb(216, 216, 250);
   display: flex;
   justify-content: top;
-  padding-top: 5vh;
-  width: 60vw;
-  height: 60vh;
+  padding-top: 3vh;
+  width: 40vh;
+  height: 40vh;
   position: fixed;
-  z-index: 10;
+  z-index: 5;
   align-items: center;
   flex-direction: column;
-  margin-left: 100vw;
-  font-size: larger;
 }
 
 .createPlaylistForm {
+  padding-top: 1vh;
+  width: 30vh;
+  height: 40vh;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   flex-direction: column;
-  height: 50vh;
-  position: absolute;
+  justify-content: space-evenly;
+}
+
+.createPlaylistForm label {
+  color: #000;
+  font-size: 2vh;
+}
+
+.createPlaylistForm p {
+  color: #000;
+  font-size: 2vh;
+}
+
+.createPlaylistInput {
+  margin-bottom: 1vh;
+  width: 30vh;
+  height: 5vh;
+}
+
+.makePublic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+
+#isPublicInput {
+  width: 4vh;
+  margin-left: 2vh;
+  margin-bottom: 0;
 }
 
 .dashboardMain {
@@ -548,6 +577,7 @@ input {
 .test {
   height: 100vh;
   overflow-y: scroll;
+  z-index: 0;
 }
 
 .scroll {
@@ -559,11 +589,25 @@ input {
 }
 
 .deletePlaylistButton {
-  right: 80px;
+  right: 85px;
   position: absolute;
   margin-top: 10px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  height: 7vh;
+  width: 7vh;
+  color: white;
+  font-size: 1.8vh;
+  background-color: #000000;
+  border-radius: 15px;
+  border-color: white;
+  border-width: 5px;
+  border-style:solid;
+  z-index: 10;
+}
+
+
+.deletePlaylistButton:hover {
+  cursor: pointer;
+  border-color: red;
 }
 
 body .rc-slider-rail {
@@ -986,9 +1030,13 @@ body .rc-slider:hover {
     height: 7vh;
   }
 
+  .test {
+    z-index: -2;
+  }
+
   .deletePlaylistButton {
     right: 4vw;
-    z-index: -1;
+    z-index: 10;
   }
 
   .playlistOptionContainer {
@@ -1081,6 +1129,10 @@ body .rc-slider:hover {
 
   .coverer {
     height: 20vh;
+  }
+
+  .centererAddSong {
+    width: 0;
   }
 
 }

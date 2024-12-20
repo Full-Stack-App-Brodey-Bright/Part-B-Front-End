@@ -80,6 +80,16 @@ export default function Playlist({
         console.log(await objResponse)
     }
 
+    function publicToggle(i) {
+        let pub = 'Public'
+        if (i == true) {
+            pub = 'Public'
+        } else {
+            pub = 'private'
+        }
+        return pub
+    }
+
     // function checkIfOwner() {
     //     if (isOwner) {
     //         // return (
@@ -114,6 +124,7 @@ export default function Playlist({
                         username={details.username}
                         tracks={details.tracks}
                         id={details._id}
+                        isPublic={publicToggle(details.isPublic)}
                         url={url}
                         playlist={playlist}
                         isOwner={isOwner}
