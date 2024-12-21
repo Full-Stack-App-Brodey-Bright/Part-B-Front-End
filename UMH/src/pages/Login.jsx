@@ -3,12 +3,15 @@ import Header from "../components/Header";
 import Cookies from "js-cookie";
 import sp from "../assets/sp.svg";
 
+// send login details to backend
 export default function Login() {
+    // loading img when waiting
     const [spinnerHidden, setSpinnerHidden] = useState(true);
 
     async function loginRequest() {
         setSpinnerHidden(false);
         const url = "https://part-b-server.onrender.com/api/auth/login";
+        
         const ErrorDisplay = document.getElementById("ErrorDisplay");
 
         let data = {
@@ -26,11 +29,12 @@ export default function Login() {
 
         const realResponse = await response.json();
 
+        // saves user data for display on other pages
         Cookies.set("token", await realResponse.token);
         Cookies.set("username", await realResponse.username);
         Cookies.set("userId", await realResponse.id);
         setSpinnerHidden(true);
-
+        // displays if user input is invalid
         ErrorDisplay.textContent = realResponse.message;
         if (response.status == 200) {
             location.href = `/connect`;

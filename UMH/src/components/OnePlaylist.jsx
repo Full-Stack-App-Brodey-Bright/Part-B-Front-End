@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 
 // individual playlist boxes when displaying multiple playlists
+// used on dashboard/library and search
 export default class OnePlaylist extends React.Component {
     constructor(props) {
         super(props);

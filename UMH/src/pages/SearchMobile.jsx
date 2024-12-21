@@ -16,6 +16,7 @@ export default function SearchMobile({
     searchType,
     setSearchType,
 }) {
+    // playlist display if searching for playlists
     const testP = () => {
         if (searchType == "Playlists") {
             return <Playlists all={true} searchQuery={searchQuery} />;
@@ -25,6 +26,7 @@ export default function SearchMobile({
         setPlayerHidden(false);
     }, []);
 
+    // displays search query
     let searchSubtitle = `${searchQuery}`;
     return (
         <div>
@@ -36,8 +38,10 @@ export default function SearchMobile({
                 <div className="dashboard">
                     <div className="dashboardMain">
                         <h2>{searchSubtitle}</h2>
+                        {/* playlist search */}
                         {testP()}
                         {
+                            // track search
                             <YTtracks
                                 searchType={searchType}
                                 searchQuery={searchQuery}
@@ -45,6 +49,7 @@ export default function SearchMobile({
                             />
                         }
                         {
+                            // user search
                             <Users
                                 searchType={searchType}
                                 searchQuery={searchQuery}

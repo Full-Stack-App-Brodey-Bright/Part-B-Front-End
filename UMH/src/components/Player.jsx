@@ -3,15 +3,22 @@ import ReactPlayer from "react-player";
 import Cookies from "js-cookie";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+
+// global variables for player to access
 let urlGlobal = "";
 let currentTrack = {};
 let previousTrack = [];
+
+// play back mode selector
 let modes = ["normal", "shuffle", "repeat", "repeat_one"];
 let currentMode = 0;
+
+// plays track when track is searched for (not in playlistDB)
 export async function playYtSearchTrack(url) {
     urlGlobal = url;
 }
 
+// sends playback mode to backend and updates queue accordingly
 async function changePlaybackMode(playbackMode) {
     await fetch("https://part-b-server.onrender.com/api/queue/mode", {
         method: "PATCH",
@@ -23,6 +30,7 @@ async function changePlaybackMode(playbackMode) {
     });
 }
 
+// changes the current playing track
 export async function updateTrack(Track) {
     const response = await fetch(
         "https://part-b-server.onrender.com/api/queue/state",
@@ -37,12 +45,15 @@ export async function updateTrack(Track) {
     );
     let objResponse = await response.json();
     urlGlobal = await objResponse.queue.currentTrack.url;
+    // saves previous track for back button
     previousTrack.push(currentTrack);
     console.log(previousTrack);
     currentTrack = await objResponse.queue.currentTrack;
-    // return await response.queue.currentTrack
 }
+
+// creates queue 
 export async function queueCreate(playlist) {
+    // checks if playlist is loaded
     if (typeof playlist != "undefined") {
         try {
             const response = await fetch(
@@ -64,6 +75,8 @@ export async function queueCreate(playlist) {
         // return await response.queue.currentTrack
     }
 }
+
+// gets the next track from queue
 export async function queueNext(playlist) {
     const response = await fetch(
         "https://part-b-server.onrender.com/api/queue/next",
@@ -91,29 +104,39 @@ export default function Player({
     setUrl,
     playerHidden,
 }) {
+    // alot of usestates (my bad)
     const [duration, setDuration] = useState(0);
     const [sliderPlayed, setSliderPlayed] = useState(0);
     const [playing, setPlaying] = React.useState(false);
     const [canEnd, setCanEnd] = React.useState(false);
     const [muted, setMuted] = useState(false);
     const playerRef = React.useRef();
+
+    // sets track with url
     var playerUrl = `https://www.youtube.com/watch?v=${url}`;
+
+    // sets url to saved url
     useEffect(() => {
         setUrl(urlGlobal);
     }, []);
+
+    // plays the track if the track changes
     useEffect(() => {
         setPlaying(true);
     }, [url, currentTrack]);
+
     let playButton = document.getElementById("playButton");
     let modeButton = document.getElementById("modeButton");
 
     return (
         <div className="playerContainer">
+            {/* mobile navbar when on mobile */}
             <div className="mobileNav">
                 <button className="mobileNavButton" onClick={() => {location.href = '/dashboard'}}>Home</button>
                 <button className="mobileNavButton" onClick={() => {location.href = '/search'}}>Search</button>
                 <button className="mobileNavButton" onClick={() => {location.href = '/library'}}>Library</button>
             </div>
+
             <ReactPlayer
                 url={playerUrl}
                 ref={playerRef}
@@ -121,6 +144,7 @@ export default function Player({
                 muted={muted}
                 height="0px"
                 onError={async () => {
+                    // if the track cant play (age restricted or private) and the player is playing. skip the track
                     if (playing && canEnd) {
                         console.log(
                             `Error playing track URL: ${playerUrl} Video may be age restricted`
@@ -129,19 +153,24 @@ export default function Player({
                         setUrl(await urlGlobal);
                     }
                 }}
+                // sets duration of duration bar
                 onDuration={(dur) => {
                     setDuration(dur);
                     console.log(dur);
                 }}
+                // sets duration bar progress
                 onProgress={(progress) => {
                     setSliderPlayed(progress.playedSeconds);
                 }}
+                // changes the play button to pause while playing
                 onPlay={async () => {
                     await setCanEnd(true), (playButton.textContent = "Pause");
                 }}
+                // changes the play button to play while paused
                 onPause={() => {
                     playButton.textContent = "Play";
                 }}
+                // if the player is playing and the track ends. play the next track
                 onEnded={async () => {
                     if (playing && canEnd) {
                         setPlaying(false);
@@ -156,6 +185,7 @@ export default function Player({
                     className="playerButton"
                     id="modeButton"
                     onClick={() => {
+                        // toggles the mode button on click by currentMode index
                         modes.length - 1 == currentMode
                             ? (currentMode = 0)
                             : (currentMode += 1);
@@ -167,9 +197,12 @@ export default function Player({
                     normal
                 </button>
                 <div className="playerButtonsMain">
+
+                    {/* back button logic */}
                     <button
                         className="playerButton"
                         onClick={() => {
+                            // if there is a previous track go back. or do nothing
                             try {
                                 previousTrack.length > 0
                                     ? (urlGlobal =
@@ -187,6 +220,7 @@ export default function Player({
                         Back
                     </button>
                     <button
+                    // play button plays player
                         id="playButton"
                         className="playerButton"
                         hidden={playerHidden}
@@ -197,6 +231,7 @@ export default function Player({
                         Player
                     </button>
                     <button
+                    // forward button skips to next track in queue
                         className="playerButton"
                         onClick={async () => {
                             await queueNext(playlist);
@@ -207,17 +242,21 @@ export default function Player({
                     </button>
                 </div>
             </div>
+            {/* duration bar hides if no track is playing */}
             <div className="durationBar" hidden={!url}>
                 <Slider
                     step={0.5}
+                    // when the user moves the bar sets track progress to the bar progress and mutes
                     onChange={(value) => {
                         setMuted(true),
                             setSliderPlayed(value),
                             playerRef.current.seekTo(value);
                     }}
+                    // unmutes when user lets go of bar
                     onChangeComplete={() => {
                         setMuted(false);
                     }}
+                    // sets duration and progress of bar to players duration and progress
                     min={0}
                     max={duration}
                     value={sliderPlayed}

@@ -1,18 +1,26 @@
 import Cookies from "js-cookie";
 
+
+    // removes a track
     export default async function removeSongRequest( tracks, url, id, setUrl ) {
+        // gets selected playlists tracks
         let removedTracks = await tracks
+
+        // removes track ids from the request data (it doesnt work without it)
         removedTracks.forEach(element => {
             if (element._id) {
                 delete element._id
             }
         });
         
+        // finds the index of the track to remove
         const index = removedTracks.map(e => e.url).indexOf(url)
         console.log(index)
+        // removes the track from the request data
         removedTracks.splice(index, 1)
         console.log(await removedTracks)
 
+        // sends new track data to backend
         let response = await fetch(`https://part-b-server.onrender.com/api/playlists/${id}`,
             {
                 method: "PUT",
@@ -26,52 +34,7 @@ import Cookies from "js-cookie";
 
         const objResponse = await response.json()
         console.log(await objResponse)
+        // sets url to nothing incase user was playing the removed track
         setUrl('')
-        // if (response.status == 200) {
-        //     location.href = `/playlist/${id}`
-        // }
     }
-    // return (
-    //     <div>
-    //         <div className="centererAddSong">
-    //             <div className="addSongBox">
-    //                 <button onClick={() => {setHidden(true)}}>Close</button>
-    //                 <form className="addSongForm">
-    //                     <p>Title</p>
-    //                     <input
-    //                         className="addSongInput"
-    //                         type="text"
-    //                         id="titleInput"
-    //                         name="title"
-    //                         placeholder="Title"
-    //                     ></input>
-    //                     <p>Artist</p>
-    //                     <input
-    //                         className="addSongInput"
-    //                         type="text"
-    //                         id="artistInput"
-    //                         name="artist"
-    //                         placeholder="Artist"
-    //                     ></input>
-    //                     <p>URL</p>
-    //                     <input
-    //                         className="addSongInput"
-    //                         type="text"
-    //                         id="urlInput"
-    //                         name="url"
-    //                         placeholder="URL"
-    //                     ></input>
-
-    //                     <button
-    //                         className="addSongInput"
-    //                         onClick={() => {addSongRequest()}}
-    //                         type="button"
-    //                     >
-    //                         Add Song
-    //                     </button>
-    //                 </form>
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
 

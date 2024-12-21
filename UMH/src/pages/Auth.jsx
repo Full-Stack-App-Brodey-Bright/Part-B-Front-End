@@ -22,7 +22,7 @@ export default async function Auth() {
     const realResponse = await response.json()
 
     Cookies.set('YTConnected', null)
-
+    // if connected send user to connect page
     if (response.status == 200) {
         Cookies.set('YTConnected', true)
         Cookies.set("YTGotten", false)

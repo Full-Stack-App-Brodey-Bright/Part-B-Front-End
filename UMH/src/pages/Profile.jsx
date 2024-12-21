@@ -6,6 +6,7 @@ import sp from "../assets/sp.svg";
 import OnePlaylist from "../components/OnePlaylist";
 
 export default function Profile() {
+    // alot of use states (my bad)
     const [profileId, setProfileId] = useState("");
     const [username, setUsername] = useState("");
     const [following, setFollowing] = useState("");
@@ -13,6 +14,8 @@ export default function Profile() {
     const [playlistCount, setPlaylistCount] = useState("");
     const [spinnerHidden, setSpinnerHidden] = useState(true);
     const [userPlaylists, setUserPlaylists] = useState([]);
+
+    // gets user from database
     async function getUser() {
         setSpinnerHidden(false);
         let response = await fetch(
@@ -29,6 +32,7 @@ export default function Profile() {
         const objResponse = await response.json();
         setSpinnerHidden(true);
         console.log(objResponse);
+        // sets all user data to display on profile
         setUsername(await objResponse.userDetails.username);
         setFollowers(await objResponse.userDetails.followers);
         setFollowing(await objResponse.userDetails.following);
@@ -37,10 +41,12 @@ export default function Profile() {
         setUserPlaylists(await objResponse.playlists);
     }
 
+    
     useEffect(() => {
         followButtonToggle();
     }, [followers]);
 
+    // toggles follow button text if following or hides it if it is the current users profile
     async function followButtonToggle() {
         let followButton = document.getElementById("followButton");
         let followerIndex = await followers.findIndex(
@@ -56,6 +62,7 @@ export default function Profile() {
         }
     }
 
+    // sends follow request and reloads the page
     async function followRequest() {
         setSpinnerHidden(false);
         let response = await fetch(
@@ -75,6 +82,7 @@ export default function Profile() {
         location.href = location.href;
     }
 
+    // gets a users following
     async function getFollowing() {
         let response = await fetch(`https://part-b-server.onrender.com/api/user/${profileId}/following`, {
             method: "GET",
@@ -88,7 +96,7 @@ export default function Profile() {
     async function getFollowers() {
         
     }
-    // if playlists exist stop sending requests
+
     useEffect(() => {
         getUser();
     }, []);

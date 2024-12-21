@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 import Playlists from "./Playlists";
 import CreatePlaylist from "./CreatePlaylist";
 
+// displays users playlists and liked playlists
 export default function Library() {
     const [hidden, setHidden] = useState(true)
 
+    // checks if user is on the mobile library page and displays mobile version
     async function libraryWait() {
         let lib = await document.getElementsByClassName('Library')[0]
         if (location.href == `${import.meta.env.VITE_URL}/library`) {
@@ -16,6 +18,7 @@ export default function Library() {
     useEffect(() => {
         libraryWait()
     }, [])
+
     return (
         <div className="Library">
         <div hidden={hidden}>
@@ -28,7 +31,7 @@ export default function Library() {
                 ;
             }}
         >
-            <div onClick={() => {setHidden(false)}} style={{display : 'flex', flexDirection : 'row', justifyContent : 'space-between', width : '95vw'}} className="PlaylistDashInfo">
+            <div onClick={() => {setHidden(!hidden)}} style={{display : 'flex', flexDirection : 'row', justifyContent : 'space-between', width : '95vw'}} className="PlaylistDashInfo">
                 <h1>Create New Playlist</h1>
                 <h1 >+</h1>
             </div>

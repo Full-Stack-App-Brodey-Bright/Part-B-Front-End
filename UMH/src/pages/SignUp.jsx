@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import sp from "../assets/sp.svg";
 import Cookies from "js-cookie";
 
+// send login details to backend
 export default function SignUp() {
     const [spinnerHidden, setSpinnerHidden] = useState(true);
     async function signUpRequest() {
@@ -24,11 +25,13 @@ export default function SignUp() {
             },
         }).then(setSpinnerHidden(false));
 
+        // saves user data
         const realResponse = await response.json();
         Cookies.set("token", await realResponse.token);
         Cookies.set("username", await realResponse.username);
         Cookies.set("userId", await realResponse.id);
 
+        // displays if users input is invalid/ server error
         ErrorDisplay.textContent = realResponse.message;
         setSpinnerHidden(true);
 

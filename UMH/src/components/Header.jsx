@@ -3,6 +3,7 @@ import { useEffect } from "react"
 export default function Header() {
     let back
 
+    // checks if on homepage (header is different on homepage)
     async function headerWait() {
         back = await document.getElementsByClassName('Back')[0]
         if (location.href ==  `${import.meta.env.VITE_URL}/home`) {

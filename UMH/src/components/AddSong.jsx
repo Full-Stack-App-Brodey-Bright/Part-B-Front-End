@@ -1,12 +1,19 @@
 import Cookies from "js-cookie";
 
+    // adds song to a plsylist
     export default async function addSongRequest( tracks, title, artist, url, id ) {
+
+        // gets the selected playlists tracks
         let newTracks = await tracks
+
+        // removes track ids from request (it doesnt work without it)
         newTracks.forEach(element => {
             if (element._id) {
                 delete element._id
             }
         });
+
+        // adds the new track to the playlists tracks
         let data = {
             tracks: await newTracks.concat({
                 title: title,
@@ -15,6 +22,7 @@ import Cookies from "js-cookie";
             
         })};
 
+        // sends the request
         let response = await fetch(`https://part-b-server.onrender.com/api/playlists/${id}`,
             {
                 method: "PUT",
@@ -28,10 +36,15 @@ import Cookies from "js-cookie";
 
         const objResponse = await response.json()
         console.log(await objResponse)
+
+        // loads the playlist
         if (response.status == 200) {
             location.href = `/playlist/${id}`
         }
     }
+
+    // old add song UI for directly adding a song
+
     // return (
     //     <div>
     //         <div className="centererAddSong">

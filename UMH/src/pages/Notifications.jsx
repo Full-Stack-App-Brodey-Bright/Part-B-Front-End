@@ -8,6 +8,8 @@ import Notification from "../components/Notification";
 
 export default function Notifications() {
     const [notifications, setNotifications] = useState([]);
+
+    // gets unread notifications (duhhhh)
     async function getUnreadNotifications() {
         let response = await fetch(
             `https://part-b-server.onrender.com/api/notifications`,

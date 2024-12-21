@@ -6,6 +6,8 @@ export default function Navbar({
     setSearchQuery,
     notDashboard,
 }) {
+
+    // checks if user is on the mobile search page and displays mobile version
     async function searchWait() {
         let search = await document.getElementsByClassName("searchComponent")[0];
         let navbar = await document.getElementsByClassName("Navbar")[0];
@@ -23,7 +25,11 @@ export default function Navbar({
     useEffect(() => {
         searchWait();
     }, []);
+
+    // displays notification count
     const [notificationCount, setNotificationCount] = useState(0);
+
+    // on search request sets search query and search type
     async function searchRequest(e) {
         e.preventDefault();
         let searchType = document.getElementById("searchType").value;
@@ -33,6 +39,7 @@ export default function Navbar({
         console.log("search: " + searchQuery + searchType);
     }
 
+    // gets notification count
     async function getUnreadNotifications() {
         let response = await fetch(
             `https://part-b-server.onrender.com/api/notifications`,

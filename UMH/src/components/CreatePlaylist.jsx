@@ -2,6 +2,8 @@ import Cookies from "js-cookie";
 import React, { useState } from "react";
 
 export default function CreatePlaylist() {
+
+    // gets data from inputs
     async function CreatePlaylistRequest() {
         let data = {
             title: document.getElementById("titleInputP").value,
@@ -10,6 +12,7 @@ export default function CreatePlaylist() {
                 document.getElementById("isPublicInput").checked
         };
 
+        // sends to backend
         let response = await fetch(
             `https://part-b-server.onrender.com/api/playlists/`,
             {
@@ -22,8 +25,11 @@ export default function CreatePlaylist() {
             }
         );
 
+
         const objResponse = await response.json();
         console.log(await objResponse);
+
+        // on success reloads the page
         if (response.status == 201) {
             location.href = location.href;
         }

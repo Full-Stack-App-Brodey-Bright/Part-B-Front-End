@@ -5,6 +5,7 @@ export default function Notification({
     playlistId,
     title,
 }) {
+    // changes the notification text depending on notification type
     function NotificationContentGen() {
         if (type == "playlist") {
             return (
@@ -38,6 +39,7 @@ export default function Notification({
         }
     }
 
+    // sends user to the playlist or other user profile depending on notification type
     function click() {
         if (type == "playlist") {
             location.href = `/playlist/${playlistId}`;

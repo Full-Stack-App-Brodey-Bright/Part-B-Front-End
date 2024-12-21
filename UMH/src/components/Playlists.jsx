@@ -22,16 +22,18 @@ export default function Playlists({all, searchQuery}) {
         setSpinnerHidden(true)
         setPlaylists(objResponse.playlists);
     }
-    // if playlists exist stop sending requests
+    // gets playlists if the search query changes
     useEffect(() => {
         getPlaylists();
     }, [searchQuery]);
 
+    // playlist display with loading img when loading
     return (
         <div className="playlistsHolder">
             <div className="PlaylistContainer">
             <img className="spinner" src={sp} hidden={spinnerHidden}></img>
                 {playlists.map((playlist) => (
+                    // sends playlists to oneplaylist component for display 
                     <OnePlaylist
                         title={playlist.title}
                         description={playlist.description}

@@ -15,24 +15,30 @@ export default function Playlist({
     useEffect(() => {
         setPlayerHidden(false);
     },[])
-    const [hidden, setHidden] = useState(true);
+
+
     const [isOwner, setIsOwner] = useState(false);
-    async function addTrack() {
-        let response = await fetch(
-            `https://part-b-server.onrender.com/api/playlists?id=${
-                window.location.pathname.split("/")[2]
-            }`,
-            {
-                method: "PUT",
-                body: JSON.stringify({}),
-                headers: {
-                    Authorization: `Bearer ${Cookies.get("token")}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-        const objResponse = await response.json();
-    }
+
+    // old add track button needs rework
+
+    // async function addTrack() {
+    //     let response = await fetch(
+    //         `https://part-b-server.onrender.com/api/playlists?id=${
+    //             window.location.pathname.split("/")[2]
+    //         }`,
+    //         {
+    //             method: "PUT",
+    //             body: JSON.stringify({}),
+    //             headers: {
+    //                 Authorization: `Bearer ${Cookies.get("token")}`,
+    //                 "Content-Type": "application/json",
+    //             },
+    //         }
+    //     );
+    //     const objResponse = await response.json();
+    // }
+
+    // gets selected playlist details
     async function getPlaylist() {
         let response = await fetch(
             `https://part-b-server.onrender.com/api/playlists?id=${
@@ -54,6 +60,8 @@ export default function Playlist({
     useEffect(() => {
         getPlaylist();
     }, []);
+
+    // creates a queue and checks if user is owner after playlist is loaded
     useEffect(() => {
         async function wait() {
             await queueCreate(await playlist);
@@ -64,6 +72,7 @@ export default function Playlist({
         wait();
     }, [playlist]);
 
+    // deletes playlist
     async function deletePlaylist() {
         let response = await fetch(`https://part-b-server.onrender.com/api/playlists/${window.location.pathname.split("/")[2]}`, 
         {
@@ -79,6 +88,7 @@ export default function Playlist({
         console.log(await objResponse)
     }
 
+    // toggles the public/private text display
     function publicToggle(i) {
         let pub = 'Public'
         if (i == true) {
@@ -112,10 +122,12 @@ export default function Playlist({
             />
             <Library />
             <div className="test">
+                {/* hides delete playlist button if not owner */}
                 <button hidden={!isOwner} className="deletePlaylistButton" onClick={() => {deletePlaylist()}}>
                     Delete Playlist
                 </button>
                 {playlist.map((details) => (
+                    // sends playlist details to component for rendering an individual playlist
                     <PlaylistDetails
                         setUrl={setUrl}
                         title={details.title}
