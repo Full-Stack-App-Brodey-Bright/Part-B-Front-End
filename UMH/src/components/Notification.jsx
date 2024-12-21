@@ -1,3 +1,4 @@
+
 export default function Notification({
     actor,
     type,
@@ -7,6 +8,11 @@ export default function Notification({
 }) {
     // changes the notification text depending on notification type
     function NotificationContentGen() {
+        if (actor === null) {
+            actor = {
+                username: 'Deleted User'
+            }
+        }
         if (type == "playlist") {
             return (
                 <div>

@@ -52,6 +52,13 @@ export default function Navbar({
         );
         let objResponse = await response.json();
         setNotificationCount(await objResponse.notifications.length);
+        try {
+            if (response.status == 500) {
+                throw new Error('Token expired please login')
+            }
+        } catch(error) {
+            location.href = '/login'
+        }
     }
 
     useEffect(() => {

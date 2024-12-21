@@ -883,19 +883,20 @@ body .rc-slider:hover {
 .timeStamp {
   margin-top: 0.2vh;
   font-size: 2vh;
-  position: absolute;
+  position: sticky;
   margin-left: 2vw;
 }
 
 .notificationOptionInfo {
   display: flex;
-  width: 65vw;
+  width: 90vw;
   justify-content: flex-start;
   margin-left: 4vw;
 }
 
 .notificationOptionInfo h1 {
   margin-right: 10vw;
+  white-space: nowrap;
 }
 
 .notificationOption:hover {

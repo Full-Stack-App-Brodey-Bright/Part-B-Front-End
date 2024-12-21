@@ -21,9 +21,14 @@ export default function Playlists({all, searchQuery}) {
         const objResponse = await response.json();
         setSpinnerHidden(true)
         setPlaylists(objResponse.playlists);
-        if (response.status == 500) {
-            location.href == '/login'
+        try {
+            if (response.status == 500) {
+                throw new Error('Token expired please login')
+            }
+        } catch(error) {
+            location.href = '/login'
         }
+
     }
     // gets playlists if the search query changes
     useEffect(() => {
@@ -35,7 +40,8 @@ export default function Playlists({all, searchQuery}) {
         <div className="playlistsHolder">
             <div className="PlaylistContainer">
             <img className="spinner" src={sp} hidden={spinnerHidden}></img>
-                {playlists.map((playlist) => (
+                {
+                playlists.map((playlist) => (
                     // sends playlists to oneplaylist component for display 
                     <OnePlaylist
                         title={playlist.title}
