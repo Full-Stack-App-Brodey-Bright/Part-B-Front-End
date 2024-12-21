@@ -21,6 +21,9 @@ export default function Playlists({all, searchQuery}) {
         const objResponse = await response.json();
         setSpinnerHidden(true)
         setPlaylists(objResponse.playlists);
+        if (response.status == 500) {
+            location.href == '/login'
+        }
     }
     // gets playlists if the search query changes
     useEffect(() => {

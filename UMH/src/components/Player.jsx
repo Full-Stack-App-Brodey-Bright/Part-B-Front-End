@@ -51,7 +51,7 @@ export async function updateTrack(Track) {
     currentTrack = await objResponse.queue.currentTrack;
 }
 
-// creates queue 
+// creates queue
 export async function queueCreate(playlist) {
     // checks if playlist is loaded
     if (typeof playlist != "undefined") {
@@ -132,9 +132,30 @@ export default function Player({
         <div className="playerContainer">
             {/* mobile navbar when on mobile */}
             <div className="mobileNav">
-                <button className="mobileNavButton" onClick={() => {location.href = '/dashboard'}}>Home</button>
-                <button className="mobileNavButton" onClick={() => {location.href = '/search'}}>Search</button>
-                <button className="mobileNavButton" onClick={() => {location.href = '/library'}}>Library</button>
+                <button
+                    className="mobileNavButton"
+                    onClick={() => {
+                        location.href = "/dashboard";
+                    }}
+                >
+                    Home
+                </button>
+                <button
+                    className="mobileNavButton"
+                    onClick={() => {
+                        location.href = "/search";
+                    }}
+                >
+                    Search
+                </button>
+                <button
+                    className="mobileNavButton"
+                    onClick={() => {
+                        location.href = "/library";
+                    }}
+                >
+                    Library
+                </button>
             </div>
 
             <ReactPlayer
@@ -197,7 +218,6 @@ export default function Player({
                     normal
                 </button>
                 <div className="playerButtonsMain">
-
                     {/* back button logic */}
                     <button
                         className="playerButton"
@@ -220,7 +240,7 @@ export default function Player({
                         Back
                     </button>
                     <button
-                    // play button plays player
+                        // play button plays player
                         id="playButton"
                         className="playerButton"
                         hidden={playerHidden}
@@ -231,7 +251,7 @@ export default function Player({
                         Player
                     </button>
                     <button
-                    // forward button skips to next track in queue
+                        // forward button skips to next track in queue
                         className="playerButton"
                         onClick={async () => {
                             await queueNext(playlist);
