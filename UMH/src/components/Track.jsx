@@ -56,7 +56,7 @@ export default function Track({
                 <PlaylistGet
                     title={title}
                     artist={artist}
-                    trackUrl={trackUrl}
+                    trackUrl={trackUrl || track.url}
                 />
             </div>
         </div>
